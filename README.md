@@ -341,14 +341,22 @@ Blueprint CSS contains multiple helper classes to show and hide content to the c
   <thead>
     <tr>
       <th></th>
-      <th>Extra Small devices Phones</th>
-      <th>Small devices Phones/Tablets (≥480px)</th>
-      <th>Medium devices Tablets/Laptops (≥720px)</th>
-      <th>Large devices Laptop/Desktop (≥960px)</th>
-      <th>Extra Large devices Hi-res Laptop/Desktop (≥1440px)</th>
+      <th>Extra Small devices</th>
+      <th>Small devices (≥480px)</th>
+      <th>Medium devices (≥720px)</th>
+      <th>Large devices (≥960px)</th>
+      <th>Extra Large devices (≥1440px)</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>Device</th>
+      <td>Phones</td>
+      <td>Phones/Tablets</td>
+      <td>Tablets/Laptops</td>
+      <td>Laptop/Desktop</td>
+      <td>Hi-res Laptop/Desktop</td>
+    </tr>
     <tr>
       <th>Container width</th>
       <td>auto</td>
