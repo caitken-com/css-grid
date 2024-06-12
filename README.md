@@ -9,6 +9,12 @@ The original (v3.1.3) is still available via CDN:
 <link href="https://unpkg.com/blueprint-css@3.1.3/dist/blueprint.min.css" rel="stylesheet" />
 ```
 
+Updated version (v3.2.0):
+
+```html
+<link href="https://cdn.statically.io/gh/caitken-com/css-grid/main/grid.css" rel="stylesheet" />
+```
+
 ## Guide
 
 Blueprint leverages HTML attributes to help namespace layout based CSS. Attributes allow consise layout names and allows us to easily understand the layout of our views. The grid is a 12 column grid.
@@ -174,6 +180,13 @@ With special modifiers you can remove gap (gutter) in row layouts. `gap-none` `g
   <div>6</div>
 </div>
 ```
+
+_Added in v3.2:_
+
+- `gap-none-sm`, `gap-column-none-sm`, `gap-row-none-sm`
+- `gap-none-md`, `gap-column-none-md`, `gap-row-none-md`
+- `gap-none-lg`, `gap-column-none-lg`, `gap-row-none-lg`
+- `gap-none-xl`, `gap-column-none-xl`, `gap-row-none-xl`
 
 ### Column Offset
 
