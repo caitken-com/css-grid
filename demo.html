@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CSS Grid Demo</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="grid.css">
+
+	<style>
+	html { font-family: "Open Sans", sans-serif; scroll-behavior: smooth; }
+	body { background-color: #f3f3f3; }
+	section { background-color: #fff; padding: 2em; margin-bottom: 3em; box-shadow: 0 0 2em 0 rgba(0,0,0,0.1); }
+	pre { padding: 1em; background-color: #f3f3f3; }
+	a:link, a:visited { color: #4e7ac7; }
+	.demo { margin-bottom: 2em; }
+	.demo > div { background-color: #4e7ac7; color: #fff; padding: 0.5em; text-align: center; }
+	.demo.alt > div:nth-child(odd) { background-color: #2b4470; }
+	.demo .demo > div { background-color: #9bb4e0; }
+	.dashed { border: 1px dashed #ccc; }
+	code { background-color: #c2d1ec; display: inline-block; padding: 0.2em 0.3em; }
+	h1, h2 { margin-top: 0; }
+	table { border-collapse: collapse; border-spacing: 0; border: 1px solid #ccc; width: 100%; background: #fff; margin-bottom: 24px; }
+	td, th { border: 1px solid #ccc; padding: .5em; text-align: left; font-size: .9em; }
+	span { background-color: #2b4470; }
+	.highlight { background-color: #c2d1ec; }
+	pre { overflow: scroll; }
+	</style>
+
+
+</head>
+<body data-layout="container">
+
+	<section id="nav">
+
+		<h1>CSS Grid demo / docs</h1>
+
+		<p>A lightweight layout library for building great responsive mobile first layouts that work everywhere. Open source, built with CSS Grid and Flexbox.</p>
+
+		<nav>
+			<ol>
+				<li><a href="#Usage">Usage</a></li>
+				<li><a href="#layout">Grid layout</a></li>
+				<li><a href="#responsive">Responsive breakpoints</a></li>
+				<li><a href="#alignment">Aligning grid elements</a></li>
+				<li><a href="#gap-spacing">Gap spacing</a></li>
+				<li><a href="#offset">Offset grid elements</a></li>
+				<li><a href="#nesting">Nesting grid elements</a></li>
+				<li><a href="#ordering">Ordering grid elements</a></li>
+				<li><a href="#centered">Centered grid elements</a></li>
+				<li><a href="#flex">Flex, Fit &amp; Fill</a></li>
+				<li><a href="#visibility">Visibility utilities</a></li>
+				<li><a href="#text-alignment">Text alignment</a></li>
+				<li><a href="#float-utilities">Float utilities</a></li>
+				<li><a href="#container">Container</a></li>
+			</ol>
+		</nav>
+
+	</section>
+
+
+	<section id="Usage">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Usage</h2>
+		</div>
+
+		<pre>&lt;link href=&quot;https://cdn.statically.io/gh/caitken-com/css-grid/main/grid.min.css&quot; rel=&quot;stylesheet&quot; /&gt;</pre>
+
+	</section>
+
+
+	<section id="layout">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Grid layout</h2>
+		</div>
+
+		<p>This library leverages custom html data attributes to help namespace the layout based CSS. The grid can be 12 columns and/or rows.</p>
+
+		<h2>Implicit columns</h2>
+
+		<p>Implicit uniform columns can define their values at the parent grid element using <code>grid-cols-X</code>. There is no need for wrapper elements around each row, see <code>grid-cols-2</code> example below.</p>
+
+		<div class="demo" data-layout="grid-cols-5">
+			<div>5</div>
+			<div>5</div>
+			<div>5</div>
+			<div>5</div>
+			<div>5</div>
+		</div>
+
+		<div class="demo" data-layout="grid-cols-4">
+			<div>4</div>
+			<div>4</div>
+			<div>4</div>
+			<div>4</div>
+		</div>
+
+		<div class="demo" data-layout="grid-cols-3">
+			<div>3</div>
+			<div>3</div>
+			<div>3</div>
+		</div>
+
+		<div class="demo" data-layout="grid-cols-2">
+			<div>2</div>
+			<div>2</div>
+			<div>2</div>
+			<div>2</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-5&quot;&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;grid-cols-4&quot;&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;grid-cols-3&quot;&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;grid-cols-2&quot;&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Explicit columns</h3>
+
+		<p>Columns that are not uniform can define their column span value directly on the column element using <code>cols-X</code>. Multiple rows are achieved with filling columns according to the 12 column layout.</p>
+
+		<div class="demo" data-layout="grid-cols">
+
+			<div data-layout="cols-1">1</div>
+			<div data-layout="cols-11">11</div>
+
+			<div data-layout="cols-2">2</div>
+			<div data-layout="cols-10">10</div>
+
+			<div data-layout="cols-3">3</div>
+			<div data-layout="cols-9">9</div>
+
+			<div data-layout="cols-4">4</div>
+			<div data-layout="cols-8">8</div>
+
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
+  &lt;div data-layout=&quot;cols-1&quot;&gt;1&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-11&quot;&gt;11&lt;/div&gt;
+
+  &lt;div data-layout=&quot;cols-2&quot;&gt;2&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-10&quot;&gt;10&lt;/div&gt;
+
+  &lt;div data-layout=&quot;cols-3&quot;&gt;3&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-9&quot;&gt;9&lt;/div&gt;
+
+  &lt;div data-layout=&quot;cols-4&quot;&gt;4&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-8&quot;&gt;8&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Implicit rows</h3>
+
+		<p>Implicit uniform rows can define their values at the parent grid element using <code>grid-rows-X</code></p>
+
+		<div data-layout="grid-rows-3" class="demo" style="height: 350px;">
+			<div>3</div>
+			<div>3</div>
+			<div>3</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-rows-3&quot; style=&quot;height: 350px;&quot;&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Explicit rows</h3>
+
+		<p>Rows that are not uniform can define their row span value directly on the element using <code>rows-X</code></p>
+
+		<div data-layout="grid-rows" class="demo" style="height: 350px;">
+			<div data-layout="rows-1">1</div>
+			<div data-layout="rows-4">4</div>
+			<div data-layout="rows-7">7</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-rows&quot; style=&quot;height: 350px;&quot;&gt;
+  &lt;div data-layout=&quot;rows-1&quot;&gt;1&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-4&quot;&gt;4&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-7&quot;&gt;7&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+
+	</section>
+
+
+	<section id="responsive">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Responsive breakpoints</h2>
+		</div>
+
+		<p>Breakpoints attributes can be stacked.</p>
+
+		<table>
+		<thead>
+			<tr>
+				<th>Attribute</th>
+				<th>Screen size</th>
+				<th>Device</th>
+				<th>Behavior</th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><code>cols-1</code> to <code>cols-12</code><br><code>rows-1</code> to <code>rows-12</code></td>
+				<td>Extra small or any</td>
+				<td>Phones</td>
+				<td>Always column width.<br>Always row height.</td>
+			</tr>
+			<tr>
+				<td><code>cols-1-sm</code> to <code>cols-12-sm</code><br><code>rows-1-sm</code> to <code>rows-12-sm</code></td>
+				<td>Small devices (480px)</td>
+				<td>Phones / Tablets</td>
+				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
+			</tr>
+			<tr>
+				<td><code>cols-1-md</code> to <code>cols-12-md</code><br><code>rows-1-md</code> to <code>rows-12-md</code>.</td>
+				<td>Medium devices (720px)</td>
+				<td>Tablets / Laptops</td>
+				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
+			</tr>
+			<tr>
+				<td><code>cols-1-lg</code> to <code>cols-12-lg</code><br><code>rows-1-lg</code> to <code>rows-12-lg</code></td>
+				<td>Large devices (960px)</td>
+				<td>Tablets / Laptops</td>
+				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
+			</tr>
+			<tr>
+				<td><code>cols-1-xl</code> to <code>cols-12-xl</code><br><code>rows-1-xl</code> to <code>rows-12-xl</code></td>
+				<td>Extra large devices (1440px)</td>
+				<td>Hi-res Laptop / Desktop</td>
+				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
+			</tr>
+		</tbody>
+		</table>
+
+		<h3>Implicit</h3>
+
+		<div class="demo" data-layout="grid-cols-2-md grid-cols-6-lg">
+			<div>2-md 6-lg</div>
+			<div>2-md 6-lg</div>
+			<div>2-md 6-lg</div>
+			<div>2-md 6-lg</div>
+			<div>2-md 6-lg</div>
+			<div>2-md 6-lg</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-2-md grid-cols-6-lg&quot;&gt;
+  &lt;div&gt;2-md 6-lg&lt;/div&gt;
+  &lt;div&gt;2-md 6-lg&lt;/div&gt;
+  &lt;div&gt;2-md 6-lg&lt;/div&gt;
+  &lt;div&gt;2-md 6-lg&lt;/div&gt;
+  &lt;div&gt;2-md 6-lg&lt;/div&gt;
+  &lt;div&gt;2-md 6-lg&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Explicit</h3>
+
+		<div class="demo" data-layout="grid-cols">
+			<div data-layout="cols-3-md cols-6-lg">3-md 6-lg</div>
+			<div data-layout="cols-3-md cols-6-lg">3-md 6-lg</div>
+			<div data-layout="cols-3-md cols-4-lg">3-md 4-lg</div>
+			<div data-layout="cols-3-md cols-8-lg">3-md 8-lg</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
+  &lt;div data-layout=&quot;cols-3-md cols-6-lg&quot;&gt;3-md 6-lg&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-3-md cols-6-lg&quot;&gt;3-md 6-lg&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-3-md cols-4-lg&quot;&gt;3-md 4-lg&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-3-md cols-8-lg&quot;&gt;3-md 8-lg&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="alignment">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Aligning grid elements</h2>
+		</div>
+
+		<ul>
+			<li><code>cols-top</code>, <code>cols-top-sm</code>, <code>cols-top-md</code>, <code>cols-top-lg</code>, <code>cols-top-xl</code></li>
+			<li><code>cols-middle</code>, <code>cols-middle-sm</code>, <code>cols-middle-md</code>, <code>cols-middle-lg</code>, <code>cols-middle-xl</code>
+			<li><code>cols-bottom</code>, <code>cols-bottom-sm</code>, <code>cols-bottom-md</code>, <code>cols-bottom-lg</code>, <code>cols-bottom-xl</code></li>
+		</ul>
+
+		<h3>Auto matching heights</h3>
+
+		<p>Grid columns automatically match column heights.</p>
+
+		<div data-layout="grid-cols-4" class="demo dashed">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Vertically top align columns</h3>
+
+		<div data-layout="grid-cols-4 cols-top" class="demo dashed">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
+		</div>
+
+		<h3>Vertically center columns</h3>
+
+		<div data-layout="grid-cols-4 cols-middle" class="demo dashed">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4 cols-middle&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4 cols-top&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Vertically bottom align columns</h3>
+
+		<div data-layout="grid-cols-4 cols-bottom" class="demo dashed">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4 cols-bottom&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="gap-spacing">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Gap spacing</h2>
+		</div>
+
+		<p>With special modifiers you can remove gap (gutter) in grid layouts.</p>
+
+		<ul>
+			<li><code>gap-none</code>, <code>gap-none-sm</code>, <code>gap-none-md</code>, <code>gap-none-lg</code>, <code>gap-none-xl</code></li>
+			<li><code>gap-cols-none</code>, <code>gap-cols-none-sm</code>, <code>gap-cols-none-md</code>, <code>gap-cols-none-lg</code>, <code>gap-cols-none-xl</code></li>
+			<li><code>gap-rows-none</code>, <code>gap-rows-none-sm</code>, <code>gap-rows-none-md</code>, <code>gap-rows-none-lg</code>, <code>gap-rows-none-xl</code></li>
+		</ul>
+
+		<div data-layout="grid-cols-3 gap-none" class="demo">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div>E</div>
+			<div>F</div>
+		</div>
+
+		<div data-layout="grid-cols-3 gap-cols-none" class="demo">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div>E</div>
+			<div>F</div>
+		</div>
+
+		<div data-layout="grid-cols-3 gap-rows-none" class="demo">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+			<div>E</div>
+			<div>F</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-3 gap-none&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;D&lt;/div&gt;
+  &lt;div&gt;E&lt;/div&gt;
+  &lt;div&gt;F&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;grid-cols-3 gap-cols-none&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;D&lt;/div&gt;
+  &lt;div&gt;E&lt;/div&gt;
+  &lt;div&gt;F&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;grid-cols-3 gap-rows-none&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;D&lt;/div&gt;
+  &lt;div&gt;E&lt;/div&gt;
+  &lt;div&gt;F&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="offset">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Offset grid elements</h2>
+		</div>
+
+		<p>Offset utilities allows an element to be offset on a given row.</p>
+
+		<ul>
+			<li><code>cols-offset-X</code>, <code>cols-offset-X-sm</code>, <code>cols-offset-X-lg</code>, <code>cols-offset-X-xl</code></li>
+			<li><code>rows-offset-X</code>, <code>rows-offset-X-sm</code>, <code>rows-offset-X-lg</code>, <code>rows-offset-X-xl</code></li>
+		</ul>
+
+		<div data-layout="grid-cols" class="demo">
+			<div data-layout="cols-4">cols-4</div>
+			<div data-layout="cols-4 cols-offset-9">cols-4 cols-offset-9</div>
+			<div data-layout="cols-3-md cols-offset-4-md">cols-3-md cols-offset-4-md</div>
+			<div data-layout="cols-3-md cols-offset-10-md">cols-3-md cols-offset-10-md</div>
+			<div data-layout="cols-6-md cols-offset-4-md">cols-6-md cols-offset-4-md</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
+  &lt;div data-layout=&quot;cols-4&quot;&gt;cols-4&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-4 cols-offset-9&quot;&gt;cols-4 cols-offset-9&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-3-md cols-offset-4-md&quot;&gt;cols-3-md cols-offset-4-md&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-3-md cols-offset-10-md&quot;&gt;cols-3-md cols-offset-10-md&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-6-md cols-offset-4-md&quot;&gt;cols-6-md cols-offset-4-md&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="nesting">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Nesting grid elements</h2>
+		</div>
+
+		<p>Grids can be nested within other grids to create more complex layouts.</p>
+
+		<div data-layout="grid-cols-2-lg" class="demo">
+			<div>
+				<p>2-lg</p>
+				<div data-layout="grid-cols-6-lg" class="demo">
+					<div>6-lg</div>
+					<div>6-lg</div>
+					<div>6-lg</div>
+					<div>6-lg</div>
+					<div>6-lg</div>
+					<div>6-lg</div>
+				</div>
+			</div>
+			<div>
+				<p>2-lg</p>
+				<div data-layout="grid-cols-2-sm grid-cols-4-md" class="demo">
+					<div>2-sm 4-md</div>
+					<div>2-sm 4-md</div>
+					<div>2-sm 4-md</div>
+					<div>2-sm 4-md</div>
+				</div>
+			</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-2-lg&quot;&gt;
+  &lt;div&gt;
+    &lt;p&gt;2-lg&lt;/p&gt;
+    &lt;div data-layout=&quot;grid-cols-6&quot;&gt;
+      &lt;div&gt;6&lt;/div&gt;
+      &lt;div&gt;6&lt;/div&gt;
+      &lt;div&gt;6&lt;/div&gt;
+      &lt;div&gt;6&lt;/div&gt;
+      &lt;div&gt;6&lt;/div&gt;
+      &lt;div&gt;6&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;p&gt;2-lg&lt;/p&gt;
+    &lt;div data-layout=&quot;grid-cols-2-sm grid-cols-4-md&quot;&gt;
+      &lt;div&gt;2-sm 4-md&lt;/div&gt;
+      &lt;div&gt;2-sm 4-md&lt;/div&gt;
+      &lt;div&gt;2-sm 4-md&lt;/div&gt;
+      &lt;div&gt;2-sm 4-md&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="ordering">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Ordering grid elements</h2>
+		</div>
+
+		<p>Flexbox allows us to reorder columns regardless of the HTML order.</p>
+
+		<ul>
+			<li><code>first</code>, <code>first-sm</code>, <code>first-md</code>, <code>first-lg</code>, <code>first-xl</code></li>
+			<li><code>last</code>, <code>last-sm</code>, <code>last-md</code>, <code>last-lg</code>, <code>last-xl</code></li>
+		</ul>
+
+		<h3>First</h3>
+
+		<div data-layout="grid-cols-4" class="demo">
+			<div>A</div>
+			<div>B</div>
+			<div>C</div>
+			<div data-layout="first">D</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4&quot;&gt;
+  &lt;div&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;D&lt;/div&gt;
+  &lt;div data-layout=&quot;first&quot;&gt;D&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Last</h3>
+
+		<div data-layout="grid-cols-4" class="demo">
+			<div data-layout="last">A</div>
+			<div>B</div>
+			<div>C</div>
+			<div>D</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4&quot;&gt;
+  &lt;div data-layout=&quot;last&quot;&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div&gt;D&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Responsive example</h3>
+
+		<div data-layout="grid-cols-4" class="demo">
+			<div data-layout="last-md">A</div>
+			<div>B</div>
+			<div>C</div>
+			<div data-layout="first-md">D</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4&quot;&gt;
+  &lt;div data-layout=&quot;last-md&quot;&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+  &lt;div&gt;C&lt;/div&gt;
+  &lt;div data-layout=&quot;first-md&quot;&gt;D&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="centered">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Centered grid elements</h2>
+		</div>
+
+		<p>You can use the <code>cols-offset-X</code> utilities to center elements.</p>
+
+		<div data-layout="grid-cols-4" class="demo">
+			<div data-layout="cols-offset-2">A</div>
+			<div>B</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-4&quot;&gt;
+  &lt;div data-layout=&quot;cols-offset-2&quot;&gt;A&lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Vertical and horizontal column centering</h3>
+
+		<p>Using a combination of <code>cols-middle</code> and <code>cols-offset-X</code> we can create centered containers.</p>
+
+		<div data-layout="grid-cols cols-middle" style="height: 350px;" class="demo dashed">
+			<div data-layout="cols-4 cols-offset-5">Ipsum dolor amet alcatra landjaeger.</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols cols-middle&quot; style=&quot;height: 350px;&quot;&gt;
+  &lt;div data-layout=&quot;cols-4 cols-offset-5&quot;&gt;Ipsum dolor amet alcatra landjaeger.&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="flex">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Flex, Fit &amp; Fill</h2>
+		</div>
+
+		<p>The <code>flex</code>, <code>fill</code> and <code>fit</code> attributes can be used to align variable size elements. Example use the <code>flex</code> attribute to set all immediate children to flex items. Once set use <code>fit</code> to adjust element to fit only to its content size and use <code>fill</code> to fill in all available space.</p>
+
+		<ul>
+			<li><code>flex</code></li>
+			<li><code>fit</code>, <code>fit-sm</code>, <code>fit-md</code>, <code>fit-lg</code>, <code>fit-xl</code></li>
+			<li><code>fill</code>, <code>fill-sm</code>, <code>fill-md</code>, <code>fill-lg</code>, <code>fill-xl</code></li>
+		</ul>
+
+		<div data-layout="flex" class="demo alt">
+			<div data-layout="fit">
+				<div>&lt;</div>
+			</div>
+			<div data-layout="fill">
+				<div>Ipsum dolor amet alcatra</div>
+			</div>
+			<div data-layout="fit">
+				<div>&gt;</div>
+			</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex&quot;&gt;
+  &lt;div data-layout=&quot;fit&quot;&gt;
+    &lt;div&gt;&amp;lt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div data-layout=&quot;fill&quot;&gt;
+    &lt;div&gt;Ipsum dolor amet alcatra&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div data-layout=&quot;fit&quot;&gt;
+    &lt;div&gt;&amp;gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="visibility">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Visibility utilities</h2>
+		</div>
+
+		<p>Multiple helper attributes to show and hide content to the corresponding grid breakpoints.</p>
+
+		<ul>
+			<li><code>show</code>, <code>show-sm</code>, <code>show-md</code>, <code>show-lg</code>, <code>show-xl</code></li>
+			<li><code>hide</code>, <code>hide-sm</code>, <code>hide-md</code>, <code>hide-lg</code>, <code>hide-xl</code></li>
+		</ul>
+
+		<div data-layout="grid-cols-2" class="demo">
+			<div data-layout="hide show-md">
+				A <span data-layout="hide show-lg">works on inline elements</span>
+			</div>
+			<div>B</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols-2&quot;&gt;
+  &lt;div data-layout=&quot;hide show-md&quot;&gt;
+    A &lt;span data-layout=&quot;hide show-lg&quot;&gt;works on inline elements&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div&gt;B&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="text-alignment">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Text alignment</h2>
+		</div>
+
+		<ul>
+			<li><code>text-left</code>, <code>text-left-sm</code>, <code>text-left-md</code>, <code>text-left-md</code>, <code>text-left-lg</code></li>
+			<li><code>text-right</code>, <code>text-right-sm</code>, <code>text-right-md</code>, <code>text-right-md</code>, <code>text-right-lg</code></li>
+			<li><code>text-center</code>, <code>text-center-sm</code>, <code>text-center-md</code>, <code>text-center-md</code>, <code>text-center-lg</code></li>
+		</ul>
+
+		<div data-layout="grid-cols" class="demo">
+			<div data-layout="cols-6 text-left">text-left</div>
+			<div data-layout="cols-6 text-right">text-right</div>
+			<div data-layout="cols-12 text-center">text-center</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
+  &lt;div data-layout=&quot;cols-6 text-left&quot;&gt;text-left&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-6 text-right&quot;&gt;text-right&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-12 text-center&quot;&gt;text-center&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="float-utilities">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Float utilities</h2>
+		</div>
+
+		<p>The float utils make it easy to float a item left, right, or center (margin auto). The <code>clear-fix</code> is a common clear fix utility to force content to clear a block element that is floated. Without a clearfix a single floated item will cause content immediately after it to potentially wrap content which may or may not be desired. Read more about <a href="https://css-tricks.com/snippets/css/clear-fix">clear fix here</a>.</p>
+
+		<ul>
+			<li><code>clear-fix</code>, <code>clear-fix-sm</code>, <code>clear-fix-md</code>, <code>clear-fix-lg</code>, <code>clear-fix-xl</code>,</li>
+			<li><code>float-left</code>, <code>float-left-sm</code>, <code>float-left-md</code>, <code>float-left-lg</code>, <code>float-left-xl</code>,</li>
+			<li><code>float-center</code>, <code>float-center-sm</code>, <code>float-center-md</code>, <code>float-center-lg</code>, <code>float-center-xl</code>,</li>
+			<li><code>float-right</code>, <code>float-right-sm</code>, <code>float-right-md</code>, <code>float-right-lg</code>, <code>float-right-xl</code>,</li>
+		</ul>
+
+		<div data-layout="clear-fix" class="demo dashed">
+			<div data-layout="float-center" style="width: 200px;">A</div>
+			<div data-layout="float-left float-right-md" style="width: 200px;">B</div>
+			<div data-layout="float-right float-left-md" style="width: 200px;">C</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;clear-fix&quot;&gt;
+	&lt;div data-layout=&quot;float-center&quot;&gt;A&lt;/div&gt;
+	&lt;div data-layout=&quot;float-left float-right-md&quot;&gt;B&lt;/div&gt;
+	&lt;div data-layout=&quot;float-right float-left-md&quot;&gt;C&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+
+	<section id="container">
+
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Container</h2>
+		</div>
+
+		<p>Basic <code>container</code> attribute to set max width and centered page level content. The container defaults to a maximum width of 1000px.</p>
+
+		<pre>&lt;div data-layout=&quot;container&quot;&gt;
+  &lt;div&gt;Ipsum dolor amet&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
+</body>
+</html>
