@@ -1,581 +1,381 @@
 # CSS Grid
-A lightweight layout library for building great responsive mobile first UIs that work everywhere. Open Source, built with CSS Grid and Flexbox. This work is based on [blueprintcss.dev](https://blueprintcss.dev) which seems to have disappeared from the internet and github.
+A lightweight layout library for building great responsive mobile first layouts that work everywhere. Open source, built with CSS Grid and Flexbox.
 
 ## Useage
-
-The original (v3.1.3) is still available via CDN:
-
-```html
-<link href="https://unpkg.com/blueprint-css@3.1.3/dist/blueprint.min.css" rel="stylesheet" />
-```
-
-Updated version (v3.2.0):
 
 ```html
 <link href="https://cdn.statically.io/gh/caitken-com/css-grid/main/grid.css" rel="stylesheet" />
 ```
 
-## Guide
+## Layout
 
-Blueprint leverages HTML attributes to help namespace layout based CSS. Attributes allow consise layout names and allows us to easily understand the layout of our views. The grid is a 12 column grid.
+This library leverages custom html data attributes to help namespace the layout based CSS. The grid can be 12 columns and/or rows.
 
 ### Layout: Implicit Columns
 
-Implicit uniform columns can define their values at the parent grid element. Unlike traditional Flexbox or float grid libraries there is no need for wrapper elements around each column.
+Implicit uniform columns can define their values at the parent grid element using `grid-cols-X`. There is no need for wrapper elements around each row, see example below.
 
 ```html
-<div bp="grid 4">
-  <div>1</div>
+<div data-layout="grid-cols-2">
   <div>2</div>
+  <div>2</div>
+  <div>2</div>
+  <div>2</div>
+</div>
+```
+
+### Explicit Columns
+
+Columns that are not uniform can define their column span value directly on the column element using `cols-X`. Multiple rows are achieved with filling columns according to the 12 column layout.
+
+```html
+<div data-layout="grid-cols">
+  <div data-layout="cols-1">1</div>
+  <div data-layout="cols-11">11</div>
+
+  <div data-layout="cols-2">2</div>
+  <div data-layout="cols-10">10</div>
+
+  <div data-layout="cols-3">3</div>
+  <div data-layout="cols-9">9</div>
+
+  <div data-layout="cols-4">4</div>
+  <div data-layout="cols-8">8</div>
+</div>
+```
+
+### Implicit rows
+
+Implicit uniform rows can define their values at the parent grid element using `grid-rows-X`
+
+```html
+<div data-layout="grid-rows-3" style="height: 350px;">
+  <div>3</div>
+  <div>3</div>
   <div>3</div>
 </div>
 ```
 
-### Layout: Explicit Columns
+### Explicit rows
 
-Columns that are not uniform can define their column span value directly on the column element. Column properties can be placed directly on the element with no need for wrapper elements.
+Rows that are not uniform can define their row span value directly on the element using `rows-X`
 
 ```html
-<div bp="grid">
-  <div bp="4">1</div>
-  <div bp="8">2</div>
+<div data-layout="grid-rows" style="height: 350px;">
+  <div data-layout="rows-1">1</div>
+  <div data-layout="rows-4">4</div>
+  <div data-layout="rows-7">7</div>
 </div>
 ```
 
-### Layout: No Rows Needed
+## Responsive breakpoints
 
-Most class based grids require a row wrapper element for every given row. This is not needed with blueprint grid. Multiple rows are achieved with filling columns according to the 12 column layout.
+Breakpoints attributes can be stacked.
+
+| Attribute | Screen size | Device | Behavior |
+| --- | --- | --- | --- |
+| `cols-1` to `cols-12`<br>`rows-1` to `rows-12` | Extra small or any | Phones | Always column width.<br>Always row height. |
+| `cols-1-sm` to `cols-12-sm`<br>`rows-1-sm` to `rows-12-sm` | Small devices (480px) | Phones / Tablets | 100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint. |
+| `cols-1-md` to `cols-12-md`<br>`rows-1-md` to `rows-12-md` | Medium devices (720px) | Tablets / Laptops | 100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint. |
+| `cols-1-lg` to `cols-12-lg`<br>`rows-1-lg` to `rows-12-lg` | Large devices (960px) | Tablets / Laptops | 100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint. |
+| `cols-1-xl` to `cols-12-xl`<br>`rows-1-xl` to `rows-12-xl` | Extra large devices (1440px) | Hi-res Laptop / Desktop | 100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint. |
+
+### Implicit example
 
 ```html
-<div bp="grid">
-  <div bp="6">6</div>
-  <div bp="6">6</div>
-  <div bp="4">4</div>
-  <div bp="4">4</div>
-  <div bp="4">4</div>
+<div data-layout="grid-cols-2-md grid-cols-6-lg">
+  <div>2-md 6-lg</div>
+  <div>2-md 6-lg</div>
+  <div>2-md 6-lg</div>
+  <div>2-md 6-lg</div>
+  <div>2-md 6-lg</div>
+  <div>2-md 6-lg</div>
 </div>
 ```
 
-### Layout: Responsive Columns
-
-Responsive column utilities are available. Column breakpoints can be stacked. Column breakpoints are adjustable using the Sass variables.
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Extra small or Any</th>
-      <th>Small devices (480px)</th>
-      <th>Medium devices (720px)</th>
-      <th>Large devices (960px)</th>
-      <th>Extra Large devices (1440px)</th>
-    </tr>
-    
-  </thead>
-  <tbody>
-    <tr>
-      <th>Device</th>
-      <td>Phones</td>
-      <td>Phones/Tablets</td>
-      <td>Tablets/Laptops</td>
-      <td>Laptop/Desktop</td>
-      <td>Hi-res Laptop/Desktop</td>
-    </tr>
-    <tr>      
-      <th>Class</th>
-      <td><code>1</code> to <code>12</code></td>
-      <td><code>1@sm</code> to <code>12@sm</code></td>
-      <td><code>1@md</code> to <code>12@md</code></td>
-      <td><code>1@lg</code> to <code>12@lg</code></td>
-      <td><code>1@xl</code> to <code>12@xl</code></td>
-    </tr>
-    <tr>
-      <th>Behavior</th>
-      <td>Always column width</td>
-      <td colspan="4">Width 100% to start, column width at above breakpoints</td>
-    </tr>
-  </tbody>
-</table>
-
-### Column Alignment: Auto Matching Heights
-
-Blueprint grid columns automatically match column heights.
+### Explicit example
 
 ```html
-<div bp="grid 3">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>
-    Bacon ipsum dolor amet alcatra landjaeger.
-  </div>
+<div data-layout="grid-cols">
+  <div data-layout="cols-3-md cols-6-lg">3-md 6-lg</div>
+  <div data-layout="cols-3-md cols-6-lg">3-md 6-lg</div>
+  <div data-layout="cols-3-md cols-4-lg">3-md 4-lg</div>
+  <div data-layout="cols-3-md cols-8-lg">3-md 8-lg</div>
 </div>
 ```
 
-### Column Alignment: Vertically Center Columns
+## Aligning grid elements
+
+- `cols-top`, `cols-top-sm`, `cols-top-md`, `cols-top-lg`, `cols-top-xl`
+- `cols-middle`, `cols-middle-sm`, `cols-middle-md`, `cols-middle-lg`, `cols-middle-xl`
+- `cols-bottom`, `cols-bottom-sm`, `cols-bottom-md`, `cols-bottom-lg`, `cols-bottom-xl`
+
+### Auto matching heights
+
+Grid columns automatically match column heights.
 
 ```html
-<div bp="grid 3 vertical-center">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>Ipsum dolor amet alcatra landjaeger.</div>
+<div data-layout="grid-cols-4">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
 </div>
 ```
 
-_Added in v3.2:_
-
-- `vertical-center-sm`
-- `vertical-center-md`
-- `vertical-center-lg`
-- `vertical-center-xl`
-
-### Column Alignment: Vertically Top Align Columns
+### Vertically top align columns
 
 ```html
-<div bp="grid 3 vertical-start">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>Ipsum dolor amet alcatra landjaeger.</div>
+<div data-layout="grid-cols-4 cols-top">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
 </div>
 ```
 
-_Added in v3.2:_
 
-- `vertical-start-sm`
-- `vertical-start-md`
-- `vertical-start-lg`
-- `vertical-start-xl`
-
-### Column Alignment: Vertically Bottom Align Columns
+### Vertically center columns
 
 ```html
-<div bp="grid 3 vertical-end">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>Ipsum dolor amet alcatra landjaeger.</div>
+<div data-layout="grid-cols-4 cols-middle">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
 </div>
 ```
 
-_Added in v3.2:_
-
-- `vertical-end-sm`
-- `vertical-end-md`
-- `vertical-end-lg`
-- `vertical-end-xl`
-
-### Gap Spacing
-
-With special modifiers you can remove gap (gutter) in row layouts. `gap-none` `gap-row-none` `gap-column-none` Example with `gap-none` we can remove the all gap from our row. This is useful for rows that have custom padding or spacing and need to override the grids default.
+### Vertically bottom align columns
 
 ```html
-<div bp="grid 4 gap-none">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
-  <div>5</div>
-  <div>6</div>
+<div data-layout="grid-cols-4 cols-bottom">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.</div>
 </div>
 ```
 
-_Added in v3.2:_
+## Gap spacing
 
-- `gap-none-sm`, `gap-column-none-sm`, `gap-row-none-sm`
-- `gap-none-md`, `gap-column-none-md`, `gap-row-none-md`
-- `gap-none-lg`, `gap-column-none-lg`, `gap-row-none-lg`
-- `gap-none-xl`, `gap-column-none-xl`, `gap-row-none-xl`
+With special modifiers you can remove gap (gutter) in grid layouts.
 
-### Column Offset
+- `gap-none`, `gap-none-sm`, `gap-none-md`, `gap-none-lg`, `gap-none-xl`
+- `gap-cols-none`, `gap-cols-none-sm`, `gap-cols-none-md`, `gap-cols-none-lg`, `gap-cols-none-xl`
+- `gap-rows-none`, `gap-rows-none-sm`, `gap-rows-none-md`, `gap-rows-none-lg`, `gap-rows-none-xl`
+
+```html
+<div data-layout="grid-cols-3 gap-none">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>D</div>
+  <div>E</div>
+  <div>F</div>
+</div>
+
+<div data-layout="grid-cols-3 gap-cols-none">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>D</div>
+  <div>E</div>
+  <div>F</div>
+</div>
+
+<div data-layout="grid-cols-3 gap-rows-none">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>D</div>
+  <div>E</div>
+  <div>F</div>
+</div>
+```
+
+## Offset grid elements
 
 Offset utilities allows a column to be offset on a given row.
 
+- `cols-offset-X`, `cols-offset-X-sm`, `cols-offset-X-lg`, `cols-offset-X-xl`
+- `rows-offset-X`, `rows-offset-X-sm`, `rows-offset-X-lg`, `rows-offset-X-xl`
+
 ```html
-<div bp="grid">
-  <div bp="4">2</div>
-  <div bp="4 offset-9">4 offset-9</div>
-</div>
-
-<div bp="grid">
-  <div bp="3@md offset-4@md">3@md offset-4@md</div>
-  <div bp="3@md offset-10@md">3@md offset-10@md</div>
-</div>
-
-<div bp="grid">
-  <div bp="6@md offset-4@md">col 6@md offset-4@md</div>
+<div data-layout="grid-cols">
+  <div data-layout="cols-4">cols-4</div>
+  <div data-layout="cols-4 cols-offset-9">cols-4 cols-offset-9</div>
+  <div data-layout="cols-3-md cols-offset-4-md">cols-3-md cols-offset-4-md</div>
+  <div data-layout="cols-3-md cols-offset-10-md">cols-3-md cols-offset-10-md</div>
+  <div data-layout="cols-6-md cols-offset-4-md">cols-6-md cols-offset-4-md</div>
 </div>
 ```
 
-### Column Nesting
+## Nesting grid elements
 
 Grids can be nested within other grids to create more complex layouts.
 
 ```html
-<div bp="grid 6@lg">
+<div data-layout="grid-cols-2-lg">
   <div>
-    <h2>6@lg</h2>
-    <div bp="grid 4">
-      <div>4</div>
-      <div>4</div>
-      <div>4</div>
-      <div>4</div>
-      <div>4</div>
-      <div>4</div>
+    <p>2-lg</p>
+    <div data-layout="grid-cols-6">
+      <div>6</div>
+      <div>6</div>
+      <div>6</div>
+      <div>6</div>
+      <div>6</div>
+      <div>6</div>
     </div>
   </div>
   <div>
-    <h2>6@md</h2>
-    <div bp="grid 3 6@md">
-      <div>3 6@md</div>
-      <div>3 6@md</div>
-      <div>3 6@md</div>
-      <div>3 6@md</div>
+    <p>2-lg</p>
+    <div data-layout="grid-cols-2-sm grid-cols-4-md">
+      <div>2-sm 4-md</div>
+      <div>2-sm 4-md</div>
+      <div>2-sm 4-md</div>
+      <div>2-sm 4-md</div>
     </div>
   </div>
 </div>
 ```
 
-### Columns Ordering
+## Ordering grid elements
 
-Flexbox allows us to reorder columns regardless of the HTML order. Reordering has `sm` `md` `lg` breakpoints matching the grid breakpoints. Example: `first` or `first@md`
+Flexbox allows us to reorder columns regardless of the HTML order.
 
-### Columns Ordering: First
+- `first`, `first-sm`, `first-md`, `first-lg`, `first-xl`
+- `last`, `last-sm`, `last-md`, `last-lg`, `last-xl`
+
+### First
 
 ```html
-<div bp="grid 3">
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div bp="first">4</div>
+<div data-layout="grid-cols-4">
+  <div>A</div>
+  <div>B</div>
+  <div>D</div>
+  <div data-layout="first">D</div>
 </div>
 ```
 
-### Columns Ordering: Last
+### Last
 
 ```html
-<div bp="grid 3">
-  <div bp="last">1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
+<div data-layout="grid-cols-4">
+  <div data-layout="last">A</div>
+  <div>B</div>
+  <div>C</div>
+  <div>D</div>
 </div>
 ```
 
-### Columns Ordering: Dynamic
+### Responsive example
 
 ```html
-<div bp="grid 3">
-  <div bp="last@md">1</div>
-  <div>2</div>
-  <div>3</div>
-  <div bp="first@md">4</div>
+<div data-layout="grid-cols-4">
+  <div data-layout="last-md">A</div>
+  <div>B</div>
+  <div>C</div>
+  <div data-layout="first-md">D</div>
 </div>
 ```
 
-### Centered Columns
+## Centered grid elements
 
-You can use the Blueprint `offset` utilities to center columns.
+You can use the `cols-offset-X` utilities to center elements.
 
 ```html
-<div bp="grid 3">
-  <div bp="offset-2">1</div>
-  <div>1</div>
+<div data-layout="grid-cols-4">
+  <div data-layout="cols-offset-2">A</div>
+  <div>B</div>
 </div>
 ```
 
-### Vertical and Horizontal Column Centering
+### Vertical and horizontal column centering
 
-Using a combination of `vertical-center` and `offset` we can create centered containers.
+Using a combination of `cols-middle` and `cols-offset-X` we can create centered containers.
 
 ```html
-<div bp="grid vertical-center" style="background-color: #f3f3f3; height: 350px;">
-  <div bp="4 offset-5">Some centered content goes here.</div>
+<div data-layout="grid-cols cols-middle" style="height: 350px;">
+  <div data-layout="cols-4 cols-offset-5">Ipsum dolor amet alcatra landjaeger.</div>
 </div>
 ```
 
-### Max Width
+## Flex, Fit & Fill
 
-Using max classes you can set the max width on elements proportionally to the max width of the `container` class. This allows containers and elements to be created that are flexible but do not scale with the view port. Example if we add a `6--max` the element max width will be half of the `container` class width. (1000/2 = 500px). This can be useful for setting a max width on objects such as forms or flexible images. Max classes can be used anywhere and are not restricted to only in `row`.
+The `flex`, `fill` and `fit` attributes can be used to align variable size elements. Example use the `flex` attribute to set all immediate children to flex items. Once set use `fit` to adjust element to fit only to its content size and use `fill` to fill in all available space.
 
-```html
-<div bp="8--max">8/12</div>
-
-<div bp="4--max">4/12</div>
-```
-
-### Full Width
-
-Full width values allow you to easily control when an element should be full width or not. This is useful for layout patterns such as forcing elements to be 100% width on smaller screens.
+- `flex`
+- `fit`, `fit-sm`, `fit-md`, `fit-lg`, `fit-xl`
+- `fill`, `fill-sm`, `fill-md`, `fill-lg`, `fill-xl`
 
 ```html
-<div bp="2--max full-width-until@sm">full-width-until@sm</div>
-
-<div bp="2--max full-width-until@md">full-width-until@md</div>
-
-<div bp="2--max full-width-until@lg">full-width-until@lg</div>
-
-<div bp="full-width">full-width</div>
-```
-
-### Flex, Fit & Fill
-
-The `flex`, `fill` and `fit` classes can be used to align variable size elements. Example use the `flex` class to set all immediate children to flex items. Once set use `fit` to adjust element to fit only to its content size and use `fill` to fill in all available space. The `number` class can be used in combination with the `fill` to adjust to specific sizes.
-
-```html
-div bp="flex">
-  <div bp="fit">
-    <span><</span>
+<div data-layout="flex">
+  <div data-layout="fit">
+    <div>&lt;</div>
   </div>
-  <div bp="fill">
-    <div>Content</div>
+  <div data-layout="fill">
+    <div>Ipsum dolor amet alcatra</div>
   </div>
-  <div bp="fill 3">
-    <div>></div>
+  <div data-layout="fit">
+    <div>&gt;</div>
   </div>
 </div>
 ```
 
-### Visibility Utilities
+## Visibility utilities
 
-Blueprint CSS contains multiple helper classes to show and hide content to the corresponding grid breakpoints.
+Multiple helper attributes to show and hide content to the corresponding grid breakpoints.
+
+- `show`, `show-sm`, `show-md`, `show-lg`, `show-xl`
+- `hide`, `hide-sm`, `hide-md`, `hide-lg`, `hide-xl`
 
 ```html
-<div bp="grid 6">
-  <div bp="hide show@md">
-    col <span bp="hide show@lg">- works on inline elements</span>
+<div data-layout="grid-cols-2">
+  <div data-layout="hide show-md">
+    A <span data-layout="hide show-lg">works on inline elements</span>
   </div>
-  <div>col</div>
+  <div>B</div>
 </div>
 ```
 
-<table class="table visible-table">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Extra Small devices</th>
-      <th>Small devices (≥480px)</th>
-      <th>Medium devices (≥720px)</th>
-      <th>Large devices (≥960px)</th>
-      <th>Extra Large devices (≥1440px)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Device</th>
-      <td>Phones</td>
-      <td>Phones/Tablets</td>
-      <td>Tablets/Laptops</td>
-      <td>Laptop/Desktop</td>
-      <td>Hi-res Laptop/Desktop</td>
-    </tr>
-    <tr>
-      <th>Container width</th>
-      <td>auto</td>
-      <td>480px</td>
-      <td>720px</td>
-      <td>960px</td>
-      <td>1440px</td>
-    </tr>
-    <tr>
-      <th>show</th>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-    </tr>
-    <tr>
-      <th>hide</th>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-    </tr>
-    <tr>
-      <th>show@sm</th>
-      <td>Hide</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-    </tr>
-    <tr>
-      <th>show@md</th>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-    </tr>
-    <tr>
-      <th>show@lg</th>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Show</td>
-      <td>Show</td>
-    </tr>
-    <tr>
-      <th>show@xl</th>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Show</td>
-    </tr>
-    <tr>
-      <th>hide@sm</th>
-      <td>Show</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-    </tr>
-    <tr>
-      <th>hide@md</th>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Hide</td>
-      <td>Hide</td>
-      <td>Hide</td>
-    </tr>
-    <tr>
-      <th>hide@lg</th>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Hide</td>
-      <td>Hide</td>
-    </tr>
-    <tr>
-      <th>hide@xl</th>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Show</td>
-      <td>Hide</td>
-    </tr>
-  </tbody>
-</table>
+## Text alignment
 
-### Spacing Utilities
-
-Spacing helpers provide a set of utility classes for margin and padding. Often we find that we want to make minor adjustments in our layouts without having to write additional view specific CSS. The utility classes can be adjusted site wide with a few simple Sass variables if needed.
+- `text-left`, `text-left-sm`, `text-left-md`, `text-left-md`, `text-left-lg`
+- `text-right`, `text-right-sm`, `text-right-md`, `text-right-md`, `text-right-lg`
+- `text-center`, `text-center-sm`, `text-center-md`, `text-center-md`, `text-center-lg`
 
 ```html
-<div bp="margin--sm">demo</div>
-
-<div bp="padding-bottom--lg">demo</div>
+<div data-layout="grid-cols">
+  <div data-layout="cols-6 text-left">text-left</div>
+  <div data-layout="cols-6 text-right">text-right</div>
+  <div data-layout="cols-12 text-center">text-center</div>
+</div>
 ```
 
-- `margin`
-- `margin--xs`
-- `margin--sm`
-- `margin--lg`
-- `margin--none`
+## Float utilities
 
----
+The float utils make it easy to float a item left, right, or center (margin auto). The `clear-fix` is a common clear fix utility to force content to clear a block element that is floated. Without a clearfix a single floated item will cause content immediately after it to potentially wrap content which may or may not be desired. Read more about [clear fix here](https://css-tricks.com/snippets/css/clear-fix).
 
-- `margin-top`
-- `margin-top--xs`
-- `margin-top--sm`
-- `margin-top--lg`
-- `margin-top--none`
-
----
-
-- `margin-right`
-- `margin-right--xs`
-- `margin-right--sm`
-- `margin-right--lg`
-- `margin-right--none`
-
----
-
-- `margin-bottom`
-- `margin-bottom--xs`
-- `margin-bottom--sm`
-- `margin-bottom--lg`
-- `margin-bottom--none`
-
----
-
-- `margin-left`
-- `margin-left--xs`
-- `margin-left--sm`
-- `margin-left--lg`
-- `margin-left--none`
-
----
-
-- `padding`
-- `padding--xs`
-- `padding--sm`
-- `padding--lg`
-- `padding--none`
-
----
-
-- `padding-top`
-- `padding-top--xs`
-- `padding-top--sm`
-- `padding-top--lg`
-- `padding-top--none`
-
----
-
-- `padding-right`
-- `padding-right--xs`
-- `padding-right--sm`
-- `padding-right--lg`
-- `padding-right--none`
-
----
-
-- `padding-bottom`
-- `padding-bottom--xs`
-- `padding-bottom--sm`
-- `padding-bottom--lg`
-- `padding-bottom--none`
-
----
-
-- `padding-left`
-- `padding-left--xs`
-- `padding-left--sm`
-- `padding-left--lg`
-- `padding-left--none`
-
-### Text Alignment
+- `clear-fix`, `clear-fix-sm`, `clear-fix-md`, `clear-fix-lg`, `clear-fix-xl`
+- `float-left`, `float-left-sm`, `float-left-md`, `float-left-lg`, `float-left-xl`
+- `float-center`, `float-center-sm`, `float-center-md`, `float-center-lg`, `float-center-xl`
+- `float-right`, `float-right-sm`, `float-right-md`, `float-right-lg`, `float-right-xl`
 
 ```html
-<div bp="text-left">text-left</div>
-
-<div bp="text-right">text-right</div>
-
-<div bp="text-center">text-center</div>
+<div data-layout="clear-fix">
+	<div data-layout="float-center">A</div>
+	<div data-layout="float-left float-right-md">B</div>
+	<div data-layout="float-right float-left-md">C</div>
+</div>
 ```
 
-### Float Utilities
+## Container
 
-The float utils make it easy to float a item left, right, or center (margin auto). The clear-fix is a common clear fix utility to force content to clear a block element that is floated. Without a clearfix a single floated item will cause content immediately after it to potentially wrap content which may or may not be desired. Read more about [clear fix here](https://css-tricks.com/snippets/css/clear-fix).
-
-```html
-<div bp="float-center 4--max">float-center</div>
-<div bp="float-left 4--max">float-left</div>
-<div bp="float-right 4--max">float-right</div>
-<div bp="clear-fix">clear-fix</div>
-```
-
-### Container
-
-Blueprint also has a basic container value to set max width and centered page level content. The container defaults to a maximum width of 1000px.
+Basic `container` attribute to set max width and centered page level content. The container defaults to a maximum width of 1000px.
 
 ```html
-<div bp="container">
-  <div>container</div>
+<div data-layout="container">
+  <div>Ipsum dolor amet</div>
 </div>
 ```
