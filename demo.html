@@ -18,7 +18,7 @@
 	pre { padding: 1em; background-color: #f3f3f3; }
 	a:link, a:visited { color: #4e7ac7; }
 	.demo { margin-bottom: 2em; }
-	.demo > div { background-color: #4e7ac7; color: #fff; padding: 0.5em; text-align: center; }
+	.demo > div { background-color: #4e7ac7; color: #fff; border: 1px dashed rgba(255, 255, 255, 0.2); padding: 1em; text-align: center; box-shadow: rgba(78, 122, 199, 0.5) 0 0 10px; }
 	.demo.alt > div:nth-child(odd) { background-color: #2b4470; }
 	.demo .demo > div { background-color: #9bb4e0; }
 	.dashed { border: 1px dashed #ccc; }
@@ -47,7 +47,6 @@
 				<li><a href="#layout">Grid layout</a></li>
 				<li><a href="#responsive">Responsive breakpoints</a></li>
 				<li><a href="#alignment">Aligning grid elements</a></li>
-				<li><a href="#gap-spacing">Gap spacing</a></li>
 				<li><a href="#offset">Offset grid elements</a></li>
 				<li><a href="#nesting">Nesting grid elements</a></li>
 				<li><a href="#ordering">Ordering grid elements</a></li>
@@ -184,7 +183,7 @@
 
 		<h3>Implicit rows</h3>
 
-		<p>Implicit uniform rows can define their values at the parent grid element using <code>grid-rows-X</code></p>
+		<p>Implicit uniform rows can define their values at the parent grid element using <code>grid-rows-X</code>.</p>
 
 		<div data-layout="grid-rows-3" class="demo" style="height: 350px;">
 			<div>3</div>
@@ -200,7 +199,7 @@
 
 		<h3>Explicit rows</h3>
 
-		<p>Rows that are not uniform can define their row span value directly on the element using <code>rows-X</code></p>
+		<p>Rows that are not uniform can define their row span value directly on the element using <code>rows-X</code>.</p>
 
 		<div data-layout="grid-rows" class="demo" style="height: 350px;">
 			<div data-layout="rows-1">1</div>
@@ -247,25 +246,25 @@
 			</tr>
 			<tr>
 				<td><code>cols-1-sm</code> to <code>cols-12-sm</code><br><code>rows-1-sm</code> to <code>rows-12-sm</code></td>
-				<td>Small devices (480px)</td>
+				<td>Small devices (48em)</td>
 				<td>Phones / Tablets</td>
 				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
 			</tr>
 			<tr>
 				<td><code>cols-1-md</code> to <code>cols-12-md</code><br><code>rows-1-md</code> to <code>rows-12-md</code>.</td>
-				<td>Medium devices (720px)</td>
+				<td>Medium devices (64em)</td>
 				<td>Tablets / Laptops</td>
 				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
 			</tr>
 			<tr>
 				<td><code>cols-1-lg</code> to <code>cols-12-lg</code><br><code>rows-1-lg</code> to <code>rows-12-lg</code></td>
-				<td>Large devices (960px)</td>
+				<td>Large devices (75em)</td>
 				<td>Tablets / Laptops</td>
 				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
 			</tr>
 			<tr>
 				<td><code>cols-1-xl</code> to <code>cols-12-xl</code><br><code>rows-1-xl</code> to <code>rows-12-xl</code></td>
-				<td>Extra large devices (1440px)</td>
+				<td>Extra large devices (86em)</td>
 				<td>Hi-res Laptop / Desktop</td>
 				<td>100% width to start, column width at breakpoint.<br>100% height to start, row height at breakpoint.</td>
 			</tr>
@@ -390,80 +389,6 @@
   &lt;div&gt;B&lt;/div&gt;
   &lt;div&gt;C&lt;/div&gt;
   &lt;div&gt;Ipsum dolor amet alcatra landjaeger. Ipsum dolor amet alcatra landjaeger.&lt;/div&gt;
-&lt;/div&gt;</pre>
-
-	</section>
-
-
-	<section id="gap-spacing">
-
-		<div data-layout="grid-cols-2">
-			<div data-layout="text-right last">
-				<a href="#nav">Back to top</a>
-			</div>
-			<h2>Gap spacing</h2>
-		</div>
-
-		<p>With special modifiers you can remove gap (gutter) in grid layouts.</p>
-
-		<ul>
-			<li><code>gap-none</code>, <code>gap-none-sm</code>, <code>gap-none-md</code>, <code>gap-none-lg</code>, <code>gap-none-xl</code></li>
-			<li><code>gap-cols-none</code>, <code>gap-cols-none-sm</code>, <code>gap-cols-none-md</code>, <code>gap-cols-none-lg</code>, <code>gap-cols-none-xl</code></li>
-			<li><code>gap-rows-none</code>, <code>gap-rows-none-sm</code>, <code>gap-rows-none-md</code>, <code>gap-rows-none-lg</code>, <code>gap-rows-none-xl</code></li>
-		</ul>
-
-		<div data-layout="grid-cols-3 gap-none" class="demo">
-			<div>A</div>
-			<div>B</div>
-			<div>C</div>
-			<div>D</div>
-			<div>E</div>
-			<div>F</div>
-		</div>
-
-		<div data-layout="grid-cols-3 gap-cols-none" class="demo">
-			<div>A</div>
-			<div>B</div>
-			<div>C</div>
-			<div>D</div>
-			<div>E</div>
-			<div>F</div>
-		</div>
-
-		<div data-layout="grid-cols-3 gap-rows-none" class="demo">
-			<div>A</div>
-			<div>B</div>
-			<div>C</div>
-			<div>D</div>
-			<div>E</div>
-			<div>F</div>
-		</div>
-
-		<pre>&lt;div data-layout=&quot;grid-cols-3 gap-none&quot;&gt;
-  &lt;div&gt;A&lt;/div&gt;
-  &lt;div&gt;B&lt;/div&gt;
-  &lt;div&gt;C&lt;/div&gt;
-  &lt;div&gt;D&lt;/div&gt;
-  &lt;div&gt;E&lt;/div&gt;
-  &lt;div&gt;F&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div data-layout=&quot;grid-cols-3 gap-cols-none&quot;&gt;
-  &lt;div&gt;A&lt;/div&gt;
-  &lt;div&gt;B&lt;/div&gt;
-  &lt;div&gt;C&lt;/div&gt;
-  &lt;div&gt;D&lt;/div&gt;
-  &lt;div&gt;E&lt;/div&gt;
-  &lt;div&gt;F&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div data-layout=&quot;grid-cols-3 gap-rows-none&quot;&gt;
-  &lt;div&gt;A&lt;/div&gt;
-  &lt;div&gt;B&lt;/div&gt;
-  &lt;div&gt;C&lt;/div&gt;
-  &lt;div&gt;D&lt;/div&gt;
-  &lt;div&gt;E&lt;/div&gt;
-  &lt;div&gt;F&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 	</section>
@@ -676,36 +601,200 @@
 			<h2>Flex, Fit &amp; Fill</h2>
 		</div>
 
-		<p>The <code>flex</code>, <code>fill</code> and <code>fit</code> attributes can be used to align variable size elements. Example use the <code>flex</code> attribute to set all immediate children to flex items. Once set use <code>fit</code> to adjust element to fit only to its content size and use <code>fill</code> to fill in all available space.</p>
+		<h3>Flex implicit columns</h3>
+
+		<p>Implicit uniform columns can define their values at the parent flex element using <code>flex-cols-X</code>. There is no need for wrapper elements around each row, see <code>flex-cols-2</code> example below.</p>
 
 		<ul>
-			<li><code>flex</code></li>
-			<li><code>fit</code>, <code>fit-sm</code>, <code>fit-md</code>, <code>fit-lg</code>, <code>fit-xl</code></li>
-			<li><code>fill</code>, <code>fill-sm</code>, <code>fill-md</code>, <code>fill-lg</code>, <code>fill-xl</code></li>
+			<li><code>flex-cols-X</code>, <code>flex-cols-X-sm</code>, <code>flex-cols-X-md</code>, <code>flex-cols-X-lg</code>, <code>flex-cols-X-xl</code></li>
 		</ul>
 
-		<div data-layout="flex" class="demo alt">
-			<div data-layout="fit">
-				<div>&lt;</div>
-			</div>
-			<div data-layout="fill">
-				<div>Ipsum dolor amet alcatra</div>
-			</div>
-			<div data-layout="fit">
-				<div>&gt;</div>
-			</div>
+		<div class="demo" data-layout="flex-cols-5">
+			<div>5</div>
+			<div>5</div>
+			<div>5</div>
+			<div>5</div>
+			<div>5</div>
 		</div>
 
-		<pre>&lt;div data-layout=&quot;flex&quot;&gt;
-  &lt;div data-layout=&quot;fit&quot;&gt;
-    &lt;div&gt;&amp;lt;&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div data-layout=&quot;fill&quot;&gt;
-    &lt;div&gt;Ipsum dolor amet alcatra&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div data-layout=&quot;fit&quot;&gt;
-    &lt;div&gt;&amp;gt;&lt;/div&gt;
-  &lt;/div&gt;
+		<div class="demo" data-layout="flex-cols-4">
+			<div>4</div>
+			<div>4</div>
+			<div>4</div>
+			<div>4</div>
+		</div>
+
+		<div class="demo" data-layout="flex-cols-3">
+			<div>3</div>
+			<div>3</div>
+			<div>3</div>
+		</div>
+
+		<div class="demo" data-layout="flex-cols-2">
+			<div>2</div>
+			<div>2</div>
+			<div>2</div>
+			<div>2</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex-cols-5&quot;&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+  &lt;div&gt;5&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;flex-cols-4&quot;&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;flex-cols-3&quot;&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div data-layout=&quot;flex-cols-2&quot;&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Flex explicit columns</h3>
+
+		<p>Columns that are not uniform can define their column span value directly on the column element using <code>cols-X</code>. Multiple rows are achieved with filling columns according to the 12 column layout.</p>
+
+		<ul>
+			<li><code>cols-X</code>, <code>cols-X-sm</code>, <code>cols-X-md</code>, <code>cols-X-lg</code>, <code>cols-X-xl</code></li>
+		</ul>
+
+		<div class="demo" data-layout="flex-cols">
+			<div data-layout="cols-1">1</div>
+			<div data-layout="cols-11">11</div>
+
+			<div data-layout="cols-2">2</div>
+			<div data-layout="cols-10">10</div>
+
+			<div data-layout="cols-3">3</div>
+			<div data-layout="cols-9">9</div>
+
+			<div data-layout="cols-4">4</div>
+			<div data-layout="cols-8">8</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex-cols&quot;&gt;
+  &lt;div data-layout=&quot;cols-1&quot;&gt;1&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-11&quot;&gt;11&lt;/div&gt;
+
+  &lt;div data-layout=&quot;cols-2&quot;&gt;2&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-10&quot;&gt;10&lt;/div&gt;
+
+  &lt;div data-layout=&quot;cols-3&quot;&gt;3&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-9&quot;&gt;9&lt;/div&gt;
+
+  &lt;div data-layout=&quot;cols-4&quot;&gt;4&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-8&quot;&gt;8&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Fit explicit columns</h3>
+
+		<p>An explicit flex column can shrink to fit the contents using <code>cols-fit</code>.</p>
+
+		<ul>
+			<li><code>cols-fit</code>, <code>cols-fit-sm</code>, <code>cols-fit-md</code>, <code>cols-fit-lg</code>, <code>cols-fit-xl</code></li>
+		</ul>
+
+		<div class="demo" data-layout="flex-cols-4">
+			<div>4</div>
+			<div>4</div>
+			<div data-layout="cols-fit">fit</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex-cols-4&quot;&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-fit&quot;&gt;fit&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Fill explicit columns</h3>
+
+		<p>An explicit flex column can fill the row using <code>cols-fill</code>.</p>
+
+		<ul>
+			<li><code>cols-fill</code>, <code>cols-fill-sm</code>, <code>cols-fill-md</code>, <code>cols-fill-lg</code>, <code>cols-fill-xl</code></li>
+		</ul>
+
+		<div class="demo" data-layout="flex-cols-4">
+			<div>4</div>
+			<div>4</div>
+			<div data-layout="cols-fill">fill</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex-cols-4&quot;&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-fill&quot;&gt;fill&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Flex implicit rows</h3>
+
+		<p>Implicit uniform rows can define their values at the parent flex element using <code>flex-rows-X</code>.</p>
+
+		<ul>
+			<li><code>flex-rows-X</code>, <code>flex-rows-X-sm</code>, <code>flex-rows-X-md</code>, <code>flex-rows-X-lg</code>, <code>flex-rows-X-xl</code></li>
+		</ul>
+
+		<div class="demo" data-layout="flex-rows-3" style="height: 350px;">
+			<div>3</div>
+			<div>3</div>
+			<div>3</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex-rows-3&quot; style=&quot;height: 350px;&quot;&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Flex explicit rows</h3>
+
+		<p>Rows that are not uniform can define their row span value directly on the element using <code>rows-X</code>.</p>
+
+		<ul>
+			<li><code>rows-X</code>, <code>rows-X-sm</code>, <code>rows-X-md</code>, <code>rows-X-lg</code>, <code>rows-X-xl</code></li>
+		</ul>
+
+		<div class="demo" data-layout="flex-rows" style="height: 350px;">
+			<div data-layout="rows-2">2</div>
+			<div data-layout="rows-4">4</div>
+			<div data-layout="rows-6">6</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex-rows&quot; style=&quot;height: 350px;&quot;&gt;
+  &lt;div data-layout=&quot;rows-2&quot;&gt;2&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-4&quot;&gt;4&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-6&quot;&gt;6&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+		<h3>Fill explicit rows</h3>
+
+		<ul>
+			<li><code>rows-fill</code>, <code>rows-fill-sm</code>, <code>rows-fill-md</code>, <code>rows-fill-lg</code>, <code>rows-fill-xl</code></li>
+		</ul>
+
+		<div class="demo" data-layout="flex-rows-4" style="height: 350px;">
+			<div>4</div>
+			<div data-layout="rows-fill">fill</div>
+		</div>
+
+		<pre>&lt;div data-layout=&quot;flex-rows-4&quot; style=&quot;height: 350px;&quot;&gt;
+  &lt;div&gt;4&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-fill&quot;&gt;fill&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 	</section>
@@ -819,7 +908,7 @@
 		<p>Basic <code>container</code> attribute to set max width and centered page level content. The container defaults to a maximum width of 1000px.</p>
 
 		<pre>&lt;div data-layout=&quot;container&quot;&gt;
-  &lt;div&gt;Ipsum dolor amet&lt;/div&gt;
+  &lt;p&gt;Ipsum dolor amet&lt;/p&gt;
 &lt;/div&gt;</pre>
 
 	</section>
