@@ -41,12 +41,13 @@ html { box-sizing: border-box; }
 [data-layout~=aspect-ratio-2-1] { aspect-ratio: 2/1; }
 [data-layout~=aspect-ratio-1-1] { aspect-ratio: 1/1; }
 
-@supports not (aspect-ratio: 16 / 9) {
-	[data-layout~=aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; }
-	[data-layout~=aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; }
-	[data-layout~=aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; }
-	[data-layout~=aspect-ratio-2-1]::before { padding-bottom: 50%; content: ""; }
-	[data-layout~=aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; }}
+@supports not (aspect-ratio: 16 / 9)
+{
+	[data-layout~=aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; float: left; }
+	[data-layout~=aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; float: left; }
+	[data-layout~=aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; float: left; }
+	[data-layout~=aspect-ratio-2-1]::before { padding-bottom: 50%; content: ""; float: left; }
+	[data-layout~=aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; float: left; }
 	[data-layout~=aspect-ratio-16-9]::after { display: block; content: ""; clear: both; }
 	[data-layout~=aspect-ratio-4-3]::after { display: block; content: ""; clear: both; }
 	[data-layout~=aspect-ratio-3-2]::after { display: block; content: ""; clear: both; }
@@ -58,7 +59,7 @@ html { box-sizing: border-box; }
 [data-layout~=last] { order: 12; }
 
 [data-layout~=hide] { display: none !important; }
-[data-layout~=show] { display: inherit !importa; }
+[data-layout~=show] { display: inherit !important; }
 
 [data-layout~=grid-cols] { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)) }
 [data-layout~=grid-rows] { display: grid; grid-template-rows: repeat(12, minmax(0, 1fr)) }
@@ -309,16 +310,20 @@ html { box-sizing: border-box; }
 	[data-layout~=sm\:aspect-ratio-16-9] { aspect-ratio: 16/9; }
 	[data-layout~=sm\:aspect-ratio-4-3] { aspect-ratio: 4/3; }
 	[data-layout~=sm\:aspect-ratio-3-2] { aspect-ratio: 3/2; }
+	[data-layout~=sm\:aspect-ratio-2-1] { aspect-ratio: 2/1; }
 	[data-layout~=sm\:aspect-ratio-1-1] { aspect-ratio: 1/1; }
 
-	@supports not (aspect-ratio: 16 / 9) {
-		[data-layout~=sm\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; }
-		[data-layout~=sm\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; }
-		[data-layout~=sm\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; }
-		[data-layout~=sm\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; }
+	@supports not (aspect-ratio: 16 / 9)
+	{
+		[data-layout~=sm\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; float: left; }
+		[data-layout~=sm\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; float: left; }
+		[data-layout~=sm\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; float: left; }
+		[data-layout~=sm\:aspect-ratio-2-1]::before { padding-bottom: 50%; content: ""; float: left; }
+		[data-layout~=sm\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; float: left; }
 		[data-layout~=sm\:aspect-ratio-16-9]::after { display: block; content: ""; clear: both; }
 		[data-layout~=sm\:aspect-ratio-4-3]::after { display: block; content: ""; clear: both; }
 		[data-layout~=sm\:aspect-ratio-3-2]::after { display: block; content: ""; clear: both; }
+		[data-layout~=sm\:aspect-ratio-2-1]::after { display: block; content: ""; clear: both; }
 		[data-layout~=sm\:aspect-ratio-1-1]::after { display: block; content: ""; clear: both; }
 	}
 
@@ -530,16 +535,20 @@ html { box-sizing: border-box; }
 	[data-layout~=md\:aspect-ratio-16-9] { aspect-ratio: 16/9; }
 	[data-layout~=md\:aspect-ratio-4-3] { aspect-ratio: 4/3; }
 	[data-layout~=md\:aspect-ratio-3-2] { aspect-ratio: 3/2; }
+	[data-layout~=md\:aspect-ratio-2-1] { aspect-ratio: 2/1; }
 	[data-layout~=md\:aspect-ratio-1-1] { aspect-ratio: 1/1; }
 
-	@supports not (aspect-ratio: 16 / 9) {
-		[data-layout~=md\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; }
-		[data-layout~=md\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; }
-		[data-layout~=md\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; }
-		[data-layout~=md\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; }
+	@supports not (aspect-ratio: 16 / 9)
+	{
+		[data-layout~=md\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; float: left; }
+		[data-layout~=md\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; float: left; }
+		[data-layout~=md\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; float: left; }
+		[data-layout~=md\:aspect-ratio-2-1]::before { padding-bottom: 50%; content: ""; float: left; }
+		[data-layout~=md\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; float: left; }
 		[data-layout~=md\:aspect-ratio-16-9]::after { display: block; content: ""; clear: both; }
 		[data-layout~=md\:aspect-ratio-4-3]::after { display: block; content: ""; clear: both; }
 		[data-layout~=md\:aspect-ratio-3-2]::after { display: block; content: ""; clear: both; }
+		[data-layout~=md\:aspect-ratio-2-1]::after { display: block; content: ""; clear: both; }
 		[data-layout~=md\:aspect-ratio-1-1]::after { display: block; content: ""; clear: both; }
 	}
 
@@ -751,16 +760,20 @@ html { box-sizing: border-box; }
 	[data-layout~=lg\:aspect-ratio-16-9] { aspect-ratio: 16/9; }
 	[data-layout~=lg\:aspect-ratio-4-3] { aspect-ratio: 4/3; }
 	[data-layout~=lg\:aspect-ratio-3-2] { aspect-ratio: 3/2; }
+	[data-layout~=lg\:aspect-ratio-2-1] { aspect-ratio: 2/1; }
 	[data-layout~=lg\:aspect-ratio-1-1] { aspect-ratio: 1/1; }
 
-	@supports not (aspect-ratio: 16 / 9) {
-		[data-layout~=lg\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; }
-		[data-layout~=lg\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; }
-		[data-layout~=lg\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; }
-		[data-layout~=lg\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; }
+	@supports not (aspect-ratio: 16 / 9)
+	{
+		[data-layout~=lg\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; float: left; }
+		[data-layout~=lg\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; float: left; }
+		[data-layout~=lg\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; float: left; }
+		[data-layout~=lg\:aspect-ratio-2-1]::before { padding-bottom: 50%; content: ""; float: left; }
+		[data-layout~=lg\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; float: left; }
 		[data-layout~=lg\:aspect-ratio-16-9]::after { display: block; content: ""; clear: both; }
 		[data-layout~=lg\:aspect-ratio-4-3]::after { display: block; content: ""; clear: both; }
 		[data-layout~=lg\:aspect-ratio-3-2]::after { display: block; content: ""; clear: both; }
+		[data-layout~=lg\:aspect-ratio-2-1]::after { display: block; content: ""; clear: both; }
 		[data-layout~=lg\:aspect-ratio-1-1]::after { display: block; content: ""; clear: both; }
 	}
 
@@ -972,16 +985,20 @@ html { box-sizing: border-box; }
 	[data-layout~=xl\:aspect-ratio-16-9] { aspect-ratio: 16/9; }
 	[data-layout~=xl\:aspect-ratio-4-3] { aspect-ratio: 4/3; }
 	[data-layout~=xl\:aspect-ratio-3-2] { aspect-ratio: 3/2; }
+	[data-layout~=xl\:aspect-ratio-2-1] { aspect-ratio: 2/1; }
 	[data-layout~=xl\:aspect-ratio-1-1] { aspect-ratio: 1/1; }
 
-	@supports not (aspect-ratio: 16 / 9) {
-		[data-layout~=xl\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; }
-		[data-layout~=xl\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; }
-		[data-layout~=xl\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; }
-		[data-layout~=xl\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; }
+	@supports not (aspect-ratio: 16 / 9)
+	{
+		[data-layout~=xl\:aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; float: left; }
+		[data-layout~=xl\:aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; float: left; }
+		[data-layout~=xl\:aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; float: left; }
+		[data-layout~=xl\:aspect-ratio-2-1]::before { padding-bottom: 50%; content: ""; float: left; }
+		[data-layout~=xl\:aspect-ratio-1-1]::before { padding-bottom: 100%; content: ""; float: left; }
 		[data-layout~=xl\:aspect-ratio-16-9]::after { display: block; content: ""; clear: both; }
 		[data-layout~=xl\:aspect-ratio-4-3]::after { display: block; content: ""; clear: both; }
 		[data-layout~=xl\:aspect-ratio-3-2]::after { display: block; content: ""; clear: both; }
+		[data-layout~=xl\:aspect-ratio-2-1]::after { display: block; content: ""; clear: both; }
 		[data-layout~=xl\:aspect-ratio-1-1]::after { display: block; content: ""; clear: both; }
 	}
 
