@@ -13,23 +13,34 @@
 
 	<style>
 	html { font-family: "Open Sans", sans-serif; scroll-behavior: smooth; }
-	:root { --bg-body: #f3f3f3; --bg-box: #4e7ac7; --bg-box-inner: #9bb4e0; --highlight: #c2d1ec; --bg-section: #fff; --text-color: #000; --section-shadow: rgba(0,0,0,0.1); --link-color: #4e7ac7; }
-	@media (prefers-color-scheme: dark) { :root { --bg-body: #2D3748; --bg-box: #1b3561; --bg-box-inner: #9bb4e0; --highlight: #020f26; --bg-section: #575F6D; --text-color: #fff; --section-shadow: rgba(0,0,0,0.5); --link-color: #fff; } }
+	:root { --bg-body: #f3f3f3; --bg-box-inner: rgba(0,0,0,0.2); --highlight: #c2d1ec; --bg-section: #fff; --text-color: #000; --section-shadow: rgba(0,0,0,0.1); --link-color: #4e7ac7; }
+	@media (prefers-color-scheme: dark) { :root { --bg-body: #2D3748; --highlight: #020f26; --bg-section: #575F6D; --text-color: #fff; --section-shadow: rgba(0,0,0,0.5); --link-color: #fff; } }
 	body { background-color: var(--bg-body); color: var(--text-color); color-scheme: light dark; }
 	section { background-color: var(--bg-section); padding: 2em; margin-bottom: 3em; box-shadow: 0 0 2em 0 var(--section-shadow); }
 	pre { padding: 1em; background-color: var(--bg-body); }
 	a:link, a:visited { color: var(--link-color); }
 	.demo { margin-bottom: 2em; }
-	.demo > div { background-color: var(--bg-box); color: #fff; border: 1px dashed rgba(255, 255, 255, 0.2); padding: 1em; text-align: center; box-shadow: rgba(78, 122, 199, 0.5) 0 0 10px; }
-	.demo.alt > div:nth-child(odd) { background-color: #2b4470; }
+	.demo > div {color: #000; border: 1px dashed rgba(255, 255, 255, 0.2); padding: 1em; display: flex; align-items: center; justify-content: center; }
+	.demo > div:nth-child(1) { background-color: rgb(254,204,135); box-shadow: rgba(254,204,135, 0.5) 0 0 10px; }
+	.demo > div:nth-child(2) { background-color: rgb(255, 168, 148); box-shadow: rgba(255, 168, 148, 0.5) 0 0 10px; }
+	.demo > div:nth-child(3) { background-color: rgb(249, 128,137); box-shadow: rgba(249, 128, 137, 0.5) 0 0 10px; }
+	.demo > div:nth-child(4) { background-color: rgb(249, 183, 197); box-shadow: rgba(249, 183, 197, 0.5) 0 0 10px; }
+	.demo > div:nth-child(5) { background-color: rgb(193, 147, 184); box-shadow: rgba(193, 147, 184, 0.5) 0 0 10px; }
+	.demo > div:nth-child(6) { background-color: rgb(168, 183, 224); box-shadow: rgba(168, 183, 224, 0.5) 0 0 10px; }
+	.demo > div:nth-child(7) { background-color: rgb(136, 210, 249); box-shadow: rgba(136, 210, 249, 0.5) 0 0 10px; }
+	.demo > div:nth-child(8) { background-color: rgb(129, 232, 229); box-shadow: rgba(129, 232, 229, 0.5) 0 0 10px;}
+	.demo > div:nth-child(9) { background-color: rgb(183, 229, 165); box-shadow: rgba(183, 229, 165, 0.5) 0 0 10px; }
+	.demo > div:nth-child(10) { background-color: rgb(234, 239, 172); box-shadow: rgba(234, 239, 172, 0.5) 0 0 10px; }
+	.demo > div:nth-child(11) { background-color: rgb(255, 244, 144); box-shadow: rgba(255, 244, 144, 0.5) 0 0 10px; }
+	.demo > div:nth-child(12) { background-color: rgb(249, 227, 128); box-shadow: rgba(249, 227, 128, 0.5) 0 0 10px; }
 	.demo .demo > div { background-color: var(--bg-box-inner); }
-	.dashed { border: 1px dashed #ccc; }
+	.dashed { border: 1px dashed #ccc; background-image: repeating-linear-gradient(315deg, rgba(204,204,204,0.5) 0 1px, transparent 0 50%); background-size: 1em 1em; }
 	code { background-color: var(--highlight); display: inline-block; padding: 0.2em 0.3em; }
 	h1, h2 { margin-top: 0; }
 	table { border-collapse: collapse; border-spacing: 0; border: 1px solid #ccc; width: 100%; margin-bottom: 24px; }
 	.table { width: 100%; overflow-x: auto; }
 	td, th { border: 1px solid #ccc; padding: .5em; text-align: left; font-size: .9em; }
-	span { background-color: #2b4470; }9
+	span { background-color: rgba(0,0,0,0.2); color: #fff; padding: 0.2em 0.3em; }
 	.highlight { background-color: var(--highlight); }
 	pre { overflow: scroll; }
 	li a { margin-bottom: 0.5em; display: inline-block; }
@@ -87,7 +98,6 @@
 					</ol>
 				</li>
 				<li><a href="#offset">Offset grid elements</a></li>
-				<li><a href="#nesting">Nesting grid elements</a></li>
 				<li><a href="#ordering">Ordering grid elements</a></li>
 				<li>
 					<a href="#flex">Flex layout, Fit &amp; Fill</a>
@@ -106,6 +116,7 @@
 				<li><a href="#text-alignment">Text alignment</a></li>
 				<li><a href="#float-utilities">Float utilities</a></li>
 				<li><a href="#container">Container</a></li>
+				<li><a href="#aspect-ratio">Aspect ratio</a></li>
 			</ol>
 		</nav>
 
@@ -214,6 +225,12 @@
 			<div data-layout="cols-4">4</div>
 			<div data-layout="cols-8">8</div>
 
+			<div data-layout="cols-5">5</div>
+			<div data-layout="cols-7">7</div>
+
+			<div data-layout="cols-6">6</div>
+			<div data-layout="cols-6">6</div>
+
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
@@ -251,9 +268,9 @@
 		<p>Rows that are not uniform can define their row span value directly on the element using <code>rows-X</code>.</p>
 
 		<div data-layout="grid-rows" class="demo" style="height: 350px;">
-			<div data-layout="rows-1">1</div>
+			<div data-layout="rows-2">2</div>
 			<div data-layout="rows-4">4</div>
-			<div data-layout="rows-7">7</div>
+			<div data-layout="rows-6">6</div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-rows&quot; style=&quot;height: 350px;&quot;&gt;
@@ -309,10 +326,10 @@
 				<tr>
 					<td>
 						<ul>
-							<li><code>grid-cols-sm</code></li>
-							<li><code>grid-rows-sm</code></li>
-							<li><code>cols-1-sm</code> to <code>cols-12-sm</code></li>
-							<li><code>rows-1-sm</code> to <code>rows-12-sm</code></li>
+							<li><code>sm:grid-cols</code></li>
+							<li><code>sm:grid-rows</code></li>
+							<li><code>sm:cols-1</code> to <code>sm:cols-12</code></li>
+							<li><code>sm:rows-1</code> to <code>sm:rows-12</code></li>
 						</ul>
 					</td>
 					<td>Small devices (48em)</td>
@@ -329,10 +346,10 @@
 				<tr>
 					<td>
 						<ul>
-							<li><code>grid-cols-md</code></li>
-							<li><code>grid-rows-md</code></li>
-							<li><code>cols-1-md</code> to <code>cols-12-md</code></li>
-							<li><code>rows-1-md</code> to <code>rows-12-md</code></li>
+							<li><code>md:grid-cols</code></li>
+							<li><code>md:grid-rows</code></li>
+							<li><code>md:cols-1</code> to <code>md:cols-12</code></li>
+							<li><code>md:rows-1</code> to <code>md:rows-12</code></li>
 						</ul>
 					</td>
 					<td>Medium devices (64em)</td>
@@ -349,10 +366,10 @@
 				<tr>
 					<td>
 						<ul>
-							<li><code>grid-cols-lg</code></li>
-							<li><code>grid-rows-lg</code></li>
-							<li><code>cols-1-lg</code> to <code>cols-12-lg</code></li>
-							<li><code>rows-1-lg</code> to <code>rows-12-lg</code></li>
+							<li><code>lg:grid-cols</code></li>
+							<li><code>lg:grid-rows</code></li>
+							<li><code>lg:cols-1</code> to <code>lg:cols-12</code></li>
+							<li><code>lg:rows-1</code> to <code>lg:rows-12</code></li>
 						</ul>
 					</td>
 					<td>Large devices (75em)</td>
@@ -369,10 +386,10 @@
 				<tr>
 					<td>
 						<ul>
-							<li><code>grid-cols-xl</code></li>
-							<li><code>grid-rows-xl</code></li>
-							<li><code>cols-1-xl</code> to <code>cols-12-xl</code></li>
-							<li><code>rows-1-xl</code> to <code>rows-12-xl</code></li>
+							<li><code>xl:grid-cols</code></li>
+							<li><code>xl:grid-rows</code></li>
+							<li><code>xl:cols-1</code> to <code>xl:cols-12</code></li>
+							<li><code>xl:rows-1</code> to <code>xl:rows-12</code></li>
 						</ul>
 					</td>
 					<td>Extra large devices (86em)</td>
@@ -392,66 +409,66 @@
 
 		<h3 id="responsive-implicit-columns">Implicit columns</h3>
 
-		<div class="demo" data-layout="grid-cols-2-md grid-cols-6-lg">
-			<div>&bull;2-md &bull;6-lg</div>
-			<div>&bull;2-md &bull;6-lg</div>
-			<div>&bull;2-md &bull;6-lg</div>
-			<div>&bull;2-md &bull;6-lg</div>
-			<div>&bull;2-md &bull;6-lg</div>
-			<div>&bull;2-md &bull;6-lg</div>
+		<div class="demo" data-layout="md:grid-cols-2 lg:grid-cols-6">
+			<div>&bull;md:2 &bull;lg:6</div>
+			<div>&bull;md:2 &bull;lg:6</div>
+			<div>&bull;md:2 &bull;lg:6</div>
+			<div>&bull;md:2 &bull;lg:6</div>
+			<div>&bull;md:2 &bull;lg:6</div>
+			<div>&bull;md:2 &bull;lg:6</div>
 		</div>
 
-		<pre>&lt;div data-layout=&quot;grid-cols-2-md grid-cols-6-lg&quot;&gt;
-  &lt;div&gt;2-md 6-lg&lt;/div&gt;
-  &lt;div&gt;2-md 6-lg&lt;/div&gt;
-  &lt;div&gt;2-md 6-lg&lt;/div&gt;
-  &lt;div&gt;2-md 6-lg&lt;/div&gt;
-  &lt;div&gt;2-md 6-lg&lt;/div&gt;
-  &lt;div&gt;2-md 6-lg&lt;/div&gt;
+		<pre>&lt;div data-layout=&quot;md:grid-cols-2 lg:grid-cols-6&quot;&gt;
+  &lt;div&gt;md:2 lg:6&lt;/div&gt;
+  &lt;div&gt;md:2 lg:6&lt;/div&gt;
+  &lt;div&gt;md:2 lg:6&lt;/div&gt;
+  &lt;div&gt;md:2 lg:6&lt;/div&gt;
+  &lt;div&gt;md:2 lg:6&lt;/div&gt;
+  &lt;div&gt;md:2 lg:6&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 		<h3 id="responsive-explicit-columns">Explicit columns</h3>
 
-		<div class="demo" data-layout="grid-cols">
-			<div data-layout="cols-3-md cols-6-lg">&bull;3-md &bull;6-lg</div>
-			<div data-layout="cols-3-md cols-6-lg">&bull;3-md &bull;6-lg</div>
-			<div data-layout="cols-3-md cols-4-lg">&bull;3-md &bull;4-lg</div>
-			<div data-layout="cols-3-md cols-8-lg">&bull;3-md &bull;8-lg</div>
+		<div class="demo" data-layout="md:grid-cols">
+			<div data-layout="md:cols-3 lg:cols-8">&bull;md:3 lg:8</div>
+			<div data-layout="md:cols-3 lg:cols-4">&bull;md:3 lg:4</div>
+			<div data-layout="md:cols-3 lg:cols-4">&bull;md:3 lg:4</div>
+			<div data-layout="md:cols-3 lg:cols-8">&bull;md:3 lg:8</div>
 		</div>
 
-		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
-  &lt;div data-layout=&quot;cols-3-md cols-6-lg&quot;&gt;3-md 6-lg&lt;/div&gt;
-  &lt;div data-layout=&quot;cols-3-md cols-6-lg&quot;&gt;3-md 6-lg&lt;/div&gt;
-  &lt;div data-layout=&quot;cols-3-md cols-4-lg&quot;&gt;3-md 4-lg&lt;/div&gt;
-  &lt;div data-layout=&quot;cols-3-md cols-8-lg&quot;&gt;3-md 8-lg&lt;/div&gt;
+		<pre>&lt;div data-layout=&quot;md:grid-cols&quot;&gt;
+  &lt;div data-layout=&quot;md:cols-3 lg:cols-6&quot;&gt;md:3 lg:8&lt;/div&gt;
+  &lt;div data-layout=&quot;md:cols-3 lg:cols-6&quot;&gt;md:3 lg:4&lt;/div&gt;
+  &lt;div data-layout=&quot;md:cols-3 lg:cols-4&quot;&gt;md:3 lg:4&lt;/div&gt;
+  &lt;div data-layout=&quot;md:cols-3 lg:cols-8&quot;&gt;md:3 lg:8&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 		<h3 id="responsive-implicit-rows">Implicit rows</h3>
 
-		<div class="demo dashed" data-layout="grid-rows-2 grid-rows-3-lg" style="height: 350px;">
-			<div>&bull;2-* &bull;3-lg</div>
-			<div>&bull;2-* &bull;3-lg</div>
-			<div data-layout="hide show-lg">&bull;hide-* &bull;show-lg</div>
+		<div class="demo dashed" data-layout="grid-rows-2 lg:grid-rows-3" style="height: 350px;">
+			<div>&bull;*:2 &bull;lg:3</div>
+			<div>&bull;*:2 &bull;lg:3</div>
+			<div data-layout="hide lg:show">&bull;*:hide &bull;lg:show</div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-rows-2 grid-rows-3-lg&quot; style=&quot;min-height: 350px;&quot;&gt;
-  &lt;div&gt;2-* 3-lg&lt;/div&gt;
-  &lt;div&gt;2-* 3-lg&lt;/div&gt;
-  &lt;div data-layout=&quot;hide show-lg&quot;&gt;hide-* show-lg&lt;/div&gt;
+  &lt;div&gt;*:2 lg:3&lt;/div&gt;
+  &lt;div&gt;*:2 lg:3&lt;/div&gt;
+  &lt;div data-layout=&quot;hide lg:show&quot;&gt;*:hide lg:show&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 		<h3 id="responsive-explicit-rows">Explicit rows</h3>
 
 		<div data-layout="grid-rows" class="demo" style="height: 350px;">
-			<div data-layout="rows-1 rows-7-lg">&bull;1-* &bull;7-lg</div>
-			<div data-layout="rows-4">&bull;4-*</div>
-			<div data-layout="rows-7 rows-1-lg">&bull;7-* &bull;1-lg</div>
+			<div data-layout="rows-2 lg:rows-4">&bull;*:2 &bull;lg:4</div>
+			<div data-layout="rows-4">&bull;*:4</div>
+			<div data-layout="rows-4 lg:rows-2">&bull;*:4 &bull;lg:2</div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-rows&quot; style=&quot;height: 350px;&quot;&gt;
-  &lt;div data-layout=&quot;rows-1 rows-7-lg&quot;&gt;1-* 7-lg&lt;/div&gt;
-  &lt;div data-layout=&quot;rows-4&quot;&gt;4-*&lt;/div&gt;
-  &lt;div data-layout=&quot;rows-7 rows-1-lg&quot;&gt;7-* 1-lg&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-1 lg:rows-7&quot;&gt;*:1 &bull;lg:7&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-4&quot;&gt;*:4&lt;/div&gt;
+  &lt;div data-layout=&quot;rows-7 lg:rows-1&quot;&gt;*:7 &bull;lg:1&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 		<h3 id="responsive-grid">Apply grid at breakpoint</h3>
@@ -460,27 +477,27 @@
 
 		<div data-layout="grid-cols-2">
 
-			<div class="demo dashed" data-layout="grid-cols-2-lg" style="height: 350px;">
-				<div>&bull;cols-lg</div>
-				<div>&bull;cols-lg</div>
+			<div class="demo dashed" data-layout="lg:grid-cols-2" style="height: 350px;">
+				<div>&bull;lg:cols-2</div>
+				<div>&bull;lg:cols-2</div>
 			</div>
 
-			<div class="demo dashed" data-layout="grid-rows-2-lg" style="height: 350px;">
-				<div>&bull;rows-lg</div>
-				<div>&bull;rows-lg</div>
+			<div class="demo dashed" data-layout="lg:grid-rows-2" style="height: 350px;">
+				<div>&bull;lg:rows-2</div>
+				<div>&bull;lg:rows-2</div>
 			</div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-cols-2&quot;&gt;
 
-  &lt;div data-layout=&quot;grid-cols-2-lg&quot; style=&quot;height: 350px;&quot;&gt;
-    &lt;div&gt;cols-lg&lt;/div&gt;
-    &lt;div&gt;cols-lg&lt;/div&gt;
+  &lt;div data-layout=&quot;lg:grid-cols-2&quot; style=&quot;height: 350px;&quot;&gt;
+    &lt;div&gt;lg:cols-2&lt;/div&gt;
+    &lt;div&gt;lg:cols-2&lt;/div&gt;
   &lt;/div&gt;
 
-  &lt;div data-layout=&quot;grid-rows-2-lg&quot; style=&quot;height: 350px;&quot;&gt;
-    &lt;div&gt;rows-lg&lt;/div&gt;
-    &lt;div&gt;rows-lg&lt;/div&gt;
+  &lt;div data-layout=&quot;lg:grid-rows-2&quot; style=&quot;height: 350px;&quot;&gt;
+    &lt;div&gt;lg:rows-2&lt;/div&gt;
+    &lt;div&gt;lg:rows-2&lt;/div&gt;
   &lt;/div&gt;
 
 &lt;/div&gt;</pre>
@@ -500,23 +517,23 @@
 		<p>Gap can be set on the parent grid element.</p>
 
 		<ul>
-			<li><code>cols-gap-0</code>, <code>cols-gap-0-sm</code>, <code>cols-gap-0-md</code>, <code>cols-gap-0-lg</code>, <code>cols-gap-0-xl</code></li>
-			<li><code>cols-gap-1</code>, <code>cols-gap-1-sm</code>, <code>cols-gap-1-md</code>, <code>cols-gap-1-lg</code>, <code>cols-gap-1-xl</code></li>
-			<li><code>cols-gap-2</code>, <code>cols-gap-2-sm</code>, <code>cols-gap-2-md</code>, <code>cols-gap-2-lg</code>, <code>cols-gap-2-xl</code></li>
-			<li><code>cols-gap-3</code>, <code>cols-gap-3-sm</code>, <code>cols-gap-3-md</code>, <code>cols-gap-3-lg</code>, <code>cols-gap-3-xl</code></li>
-			<li><code>cols-gap-4</code>, <code>cols-gap-4-sm</code>, <code>cols-gap-4-md</code>, <code>cols-gap-4-lg</code>, <code>cols-gap-4-xl</code></li>
-			<li><code>cols-gap-5</code>, <code>cols-gap-5-sm</code>, <code>cols-gap-5-md</code>, <code>cols-gap-5-lg</code>, <code>cols-gap-5-xl</code></li>
+			<li><code>cols-gap-0</code>, <code>sm:cols-gap-0</code>, <code>md:cols-gap-0</code>, <code>lg:cols-gap-0</code>, <code>xl:cols-gap-0</code></li>
+			<li><code>cols-gap-1</code>, <code>sm:cols-gap-1</code>, <code>md:cols-gap-1</code>, <code>lg:cols-gap-1</code>, <code>xl:cols-gap-1</code></li>
+			<li><code>cols-gap-2</code>, <code>sm:cols-gap-2</code>, <code>md:cols-gap-2</code>, <code>lg:cols-gap-2</code>, <code>xl:cols-gap-2</code></li>
+			<li><code>cols-gap-3</code>, <code>sm:cols-gap-3</code>, <code>md:cols-gap-3</code>, <code>lg:cols-gap-3</code>, <code>xl:cols-gap-3</code></li>
+			<li><code>cols-gap-4</code>, <code>sm:cols-gap-4</code>, <code>md:cols-gap-4</code>, <code>lg:cols-gap-4</code>, <code>xl:cols-gap-4</code></li>
+			<li><code>cols-gap-5</code>, <code>sm:cols-gap-5</code>, <code>md:cols-gap-5</code>, <code>lg:cols-gap-5</code>, <code>xl:cols-gap-5</code></li>
 		</ul>
 		<ul>
-			<li><code>rows-gap-0</code>, <code>rows-gap-0-sm</code>, <code>rows-gap-0-md</code>, <code>rows-gap-0-lg</code>, <code>rows-gap-0-xl</code></li>
-			<li><code>rows-gap-1</code>, <code>rows-gap-1-sm</code>, <code>rows-gap-1-md</code>, <code>rows-gap-1-lg</code>, <code>rows-gap-1-xl</code></li>
-			<li><code>rows-gap-2</code>, <code>rows-gap-2-sm</code>, <code>rows-gap-2-md</code>, <code>rows-gap-2-lg</code>, <code>rows-gap-2-xl</code></li>
-			<li><code>rows-gap-3</code>, <code>rows-gap-3-sm</code>, <code>rows-gap-3-md</code>, <code>rows-gap-3-lg</code>, <code>rows-gap-3-xl</code></li>
-			<li><code>rows-gap-4</code>, <code>rows-gap-4-sm</code>, <code>rows-gap-4-md</code>, <code>rows-gap-4-lg</code>, <code>rows-gap-4-xl</code></li>
-			<li><code>rows-gap-5</code>, <code>rows-gap-5-sm</code>, <code>rows-gap-5-md</code>, <code>rows-gap-5-lg</code>, <code>rows-gap-5-xl</code></li>
+			<li><code>rows-gap-0</code>, <code>sm:rows-gap-0</code>, <code>md:rows-gap-0</code>, <code>lg:rows-gap-0</code>, <code>xl:rows-gap-0</code></li>
+			<li><code>rows-gap-1</code>, <code>sm:rows-gap-1</code>, <code>md:rows-gap-1</code>, <code>lg:rows-gap-1</code>, <code>xl:rows-gap-1</code></li>
+			<li><code>rows-gap-2</code>, <code>sm:rows-gap-2</code>, <code>md:rows-gap-2</code>, <code>lg:rows-gap-2</code>, <code>xl:rows-gap-2</code></li>
+			<li><code>rows-gap-3</code>, <code>sm:rows-gap-3</code>, <code>md:rows-gap-3</code>, <code>lg:rows-gap-3</code>, <code>xl:rows-gap-3</code></li>
+			<li><code>rows-gap-4</code>, <code>sm:rows-gap-4</code>, <code>md:rows-gap-4</code>, <code>lg:rows-gap-4</code>, <code>xl:rows-gap-4</code></li>
+			<li><code>rows-gap-5</code>, <code>sm:rows-gap-5</code>, <code>md:rows-gap-5</code>, <code>lg:rows-gap-5</code>, <code>xl:rows-gap-5</code></li>
 		</ul>
 
-		<div class="demo dashed" data-layout="grid-cols-3 cols-gap-1-sm cols-gap-2-md cols-gap-3-lg cols-gap-5-xl rows-gap-1-sm rows-gap-2-md rows-gap-3-lg rows-gap-5-xl">
+		<div class="demo dashed" data-layout="grid-cols-3 sm:cols-gap-1 md:cols-gap-2 lg:cols-gap-3 xl:cols-gap-5 rows-gap-1 sm:rows-gap-2 md:rows-gap-3 lg:rows-gap-5 xl:rows-gap-5">
 			<div>1</div>
 			<div>2</div>
 			<div>3</div>
@@ -525,7 +542,7 @@
 			<div>6</div>
 		</div>
 
-		<pre>&lt;div data-layout=&quot;grid-cols-3 cols-gap-1-sm cols-gap-2-md cols-gap-3-lg cols-gap-5-xl rows-gap-1-sm rows-gap-2-md rows-gap-3-lg rows-gap-5-xl&quot;&gt;
+		<pre>&lt;div data-layout=&quot;grid-cols-3 sm:cols-gap-1 md:cols-gap-2 lg:cols-gap-3 xl:cols-gap-5 rows-gap-1 sm:rows-gap-2 md:rows-gap-3 lg:rows-gap-5 xl:rows-gap-5&quot;&gt;
   &lt;div&gt;1&lt;/div&gt;
   &lt;div&gt;2&lt;/div&gt;
   &lt;div&gt;3&lt;/div&gt;
@@ -567,7 +584,7 @@
 		<h3 id="alignment-top">Vertically top align columns</h3>
 
 		<ul>
-			<li><code>cols-top</code>, <code>cols-top-sm</code>, <code>cols-top-md</code>, <code>cols-top-lg</code>, <code>cols-top-xl</code></li>
+			<li><code>cols-top</code>, <code>sm:cols-top</code>, <code>md:cols-top</code>, <code>lg:cols-top</code>, <code>xl:cols-top</code></li>
 		</ul>
 
 		<div data-layout="grid-cols-4 cols-top" class="demo dashed">
@@ -587,7 +604,7 @@
 		<h3 id="alignment-center">Vertically center columns</h3>
 
 		<ul>
-			<li><code>cols-middle</code>, <code>cols-middle-sm</code>, <code>cols-middle-md</code>, <code>cols-middle-lg</code>, <code>cols-middle-xl</code></li>
+			<li><code>cols-middle</code>, <code>sm:cols-middle</code>, <code>md:cols-middle</code>, <code>lg:cols-middle</code>, <code>xl:cols-middle</code></li>
 		</ul>
 
 		<div data-layout="grid-cols-4 cols-middle" class="demo dashed">
@@ -607,7 +624,7 @@
 		<h3 id="alignment-bottom">Vertically bottom align columns</h3>
 
 		<ul>
-			<li><code>cols-bottom</code>, <code>cols-bottom-sm</code>, <code>cols-bottom-md</code>, <code>cols-bottom-lg</code>, <code>cols-bottom-xl</code></li>
+			<li><code>cols-bottom</code>, <code>sm:cols-bottom</code>, <code>md:cols-bottom</code>, <code>lg:cols-bottom</code>, <code>xl:cols-bottom</code></li>
 		</ul>
 
 		<div data-layout="grid-cols-4 cols-bottom" class="demo dashed">
@@ -627,8 +644,8 @@
 		<h3 id="alignment-flex-center">Flexbox alignment center</h3>
 
 		<ul>
-			<li><code>flex-cols-center</code>, <code>flex-cols-center-sm</code>, <code>flex-cols-center-md</code>, <code>flex-cols-center-lg</code>, <code>flex-cols-center-xl</code></li>
-			<li><code>flex-rows-center</code>, <code>flex-rows-center-sm</code>, <code>flex-rows-center-md</code>, <code>flex-rows-center-lg</code>, <code>flex-rows-center-xl</code></li>
+			<li><code>flex-cols-center</code>, <code>sm:flex-cols-center</code>, <code>md:flex-cols-center</code>, <code>lg:flex-cols-center</code>, <code>xl:flex-cols-center</code></li>
+			<li><code>flex-rows-center</code>, <code>sm:flex-rows-center</code>, <code>md:flex-rows-center</code>, <code>lg:flex-rows-center</code>, <code>xl:flex-rows-center</code></li>
 		</ul>
 
 		<div data-layout="flex-cols-center" class="demo dashed">
@@ -658,8 +675,8 @@
 		<h3 id="alignment-flex-around">Flexbox alignment around</h3>
 
 		<ul>
-			<li><code>flex-cols-around</code>, <code>flex-cols-around-sm</code>, <code>flex-cols-around-md</code>, <code>flex-cols-around-lg</code>, <code>flex-cols-around-xl</code></li>
-			<li><code>flex-rows-around</code>, <code>flex-rows-around-sm</code>, <code>flex-rows-around-md</code>, <code>flex-rows-around-lg</code>, <code>flex-rows-around-xl</code></li>
+			<li><code>flex-cols-around</code>, <code>sm:flex-cols-around</code>, <code>md:flex-cols-around</code>, <code>lg:flex-cols-around</code>, <code>xl:flex-cols-around</code></li>
+			<li><code>flex-rows-around</code>, <code>sm:flex-rows-around</code>, <code>md:flex-rows-around</code>, <code>lg:flex-rows-around</code>, <code>xl:flex-rows-around</code></li>
 		</ul>
 
 		<div data-layout="flex-cols-around" class="demo dashed">
@@ -689,8 +706,8 @@
 		<h3 id="alignment-flex-between">Flexbox alignment between</h3>
 
 		<ul>
-			<li><code>flex-cols-between</code>, <code>flex-cols-between-sm</code>, <code>flex-cols-between-md</code>, <code>flex-cols-between-lg</code>, <code>flex-cols-between-xl</code></li>
-			<li><code>flex-rows-between</code>, <code>flex-rows-between-sm</code>, <code>flex-rows-between-md</code>, <code>flex-rows-between-lg</code>, <code>flex-rows-between-xl</code></li>
+			<li><code>flex-cols-between</code>, <code>sm:flex-cols-between</code>, <code>md:flex-cols-between</code>, <code>lg:flex-cols-between</code>, <code>xl:flex-cols-between</code></li>
+			<li><code>flex-rows-between</code>, <code>sm:flex-rows-between</code>, <code>md:flex-rows-between</code>, <code>lg:flex-rows-between</code>, <code>xl:flex-rows-between</code></li>
 		</ul>
 
 		<div data-layout="flex-cols-between" class="demo dashed">
@@ -720,8 +737,8 @@
 		<h3 id="alignment-flex-evenly">Flexbox alignment evenly</h3>
 
 		<ul>
-			<li><code>flex-cols-evenly</code>, <code>flex-cols-evenly-sm</code>, <code>flex-cols-evenly-md</code>, <code>flex-cols-evenly-lg</code>, <code>flex-cols-evenly-xl</code></li>
-			<li><code>flex-rows-evenly</code>, <code>flex-rows-evenly-sm</code>, <code>flex-rows-evenly-md</code>, <code>flex-rows-evenly-lg</code>, <code>flex-rows-evenly-xl</code></li>
+			<li><code>flex-cols-evenly</code>, <code>sm:flex-cols-evenly</code>, <code>md:flex-cols-evenly</code>, <code>lg:flex-cols-evenly</code>, <code>xl:flex-cols-evenly</code></li>
+			<li><code>flex-rows-evenly</code>, <code>sm:flex-rows-evenly</code>, <code>md:flex-rows-evenly</code>, <code>lg:flex-rows-evenly</code>, <code>xl:flex-rows-evenly</code></li>
 		</ul>
 
 		<div data-layout="flex-cols-evenly" class="demo dashed">
@@ -751,8 +768,8 @@
 		<h3 id="alignment-flex-start">Flexbox alignment start</h3>
 
 		<ul>
-			<li><code>flex-cols-start</code>, <code>flex-cols-start-sm</code>, <code>flex-cols-start-md</code>, <code>flex-cols-start-lg</code>, <code>flex-cols-start-xl</code></li>
-			<li><code>flex-rows-start</code>, <code>flex-rows-start-sm</code>, <code>flex-rows-start-md</code>, <code>flex-rows-start-lg</code>, <code>flex-rows-start-xl</code></li>
+			<li><code>flex-cols-start</code>, <code>sm:flex-cols-start</code>, <code>md:flex-cols-start</code>, <code>lg:flex-cols-start</code>, <code>xl:flex-cols-start</code></li>
+			<li><code>flex-rows-start</code>, <code>sm:flex-rows-start</code>, <code>md:flex-rows-start</code>, <code>lg:flex-rows-start</code>, <code>xl:flex-rows-start</code></li>
 		</ul>
 
 		<div data-layout="flex-cols-start" class="demo dashed">
@@ -782,8 +799,8 @@
 		<h3 id="alignment-flex-end">Flexbox alignment end</h3>
 
 		<ul>
-			<li><code>flex-cols-end</code>, <code>flex-cols-end-sm</code>, <code>flex-cols-end-md</code>, <code>flex-cols-end-lg</code>, <code>flex-cols-end-xl</code></li>
-			<li><code>flex-rows-end</code>, <code>flex-rows-end-sm</code>, <code>flex-rows-end-md</code>, <code>flex-rows-end-lg</code>, <code>flex-rows-end-xl</code></li>
+			<li><code>flex-cols-end</code>, <code>sm:flex-cols-end</code>, <code>md:flex-cols-end</code>, <code>lg:flex-cols-end</code>, <code>xl:flex-cols-end</code></li>
+			<li><code>flex-rows-end</code>, <code>sm:flex-rows-end</code>, <code>md:flex-rows-end</code>, <code>lg:flex-rows-end</code>, <code>xl:flex-rows-end</code></li>
 		</ul>
 
 		<div data-layout="flex-cols-end" class="demo dashed">
@@ -814,8 +831,8 @@
 		<h3 id="alignment-flex-stretch">Flexbox alignment stretch</h3>
 
 		<ul>
-			<li><code>flex-cols-stretch</code>, <code>flex-cols-stretch-sm</code>, <code>flex-cols-stretch-md</code>, <code>flex-cols-stretch-lg</code>, <code>flex-cols-stretch-xl</code></li>
-			<li><code>flex-rows-stretch</code>, <code>flex-rows-stretch-sm</code>, <code>flex-rows-stretch-md</code>, <code>flex-rows-stretch-lg</code>, <code>flex-rows-stretch-xl</code></li>
+			<li><code>flex-cols-stretch</code>, <code>sm:flex-cols-stretch</code>, <code>md:flex-cols-stretch</code>, <code>lg:flex-cols-stretch</code>, <code>xl:flex-cols-stretch</code></li>
+			<li><code>flex-rows-stretch</code>, <code>sm:flex-rows-stretch</code>, <code>md:flex-rows-stretch</code>, <code>lg:flex-rows-stretch</code>, <code>xl:flex-rows-stretch</code></li>
 		</ul>
 
 		<div data-layout="flex-cols-stretch" class="demo dashed">
@@ -864,87 +881,38 @@
 			<h2>Offset grid elements</h2>
 		</div>
 
-		<p>Offset utilities allows an element to be offset on a given row.</p>
+		<p>Offset utilities allows an element to be offset on a given column and/or row.</p>
 
 		<ul>
-			<li><code>cols-offset-X</code>, <code>cols-offset-X-sm</code>, <code>cols-offset-X-lg</code>, <code>cols-offset-X-xl</code></li>
-			<li><code>rows-offset-X</code>, <code>rows-offset-X-sm</code>, <code>rows-offset-X-lg</code>, <code>rows-offset-X-xl</code></li>
+			<li><code>cols-start-X</code>, <code>sm:cols-start-X</code>, <code>md:cols-start-X</code>, <code>lg:cols-start-X</code>, <code>xl:cols-start-X</code></li>
+			<li><code>rows-start-X</code>, <code>sm:rows-start-X</code>, <code>md:rows-start-X</code>, <code>lg:rows-start-X</code>, <code>xl:rows-start-X</code></li>
 		</ul>
 
-		<div data-layout="grid-cols" class="demo dashed">
-			<div data-layout="cols-4">&bull;cols-4</div>
-			<div data-layout="cols-4 cols-offset-9">&bull;cols-4 &bull;cols-offset-9</div>
-			<div data-layout="cols-3-md cols-offset-4-md">&bull;cols-3-md &bull;cols-offset-4-md</div>
-			<div data-layout="cols-3-md cols-offset-10-md">&bull;cols-3-md &bull;cols-offset-10-md</div>
-			<div data-layout="cols-6-md cols-offset-4-md">&bull;cols-6-md &bull;cols-offset-4-md</div>
+		<ul>
+			<li><code>cols-end-X</code>, <code>sm:cols-end-X</code>, <code>md:cols-end-X</code>, <code>lg:cols-end-X</code>, <code>xl:cols-end-X</code></li>
+			<li><code>rows-end-X</code>, <code>sm:rows-end-X</code>, <code>md:rows-end-X</code>, <code>lg:rows-end-X</code>, <code>xl:rows-start-X</code></li>
+		</ul>
+
+		<div data-layout="grid-cols grid-rows" class="demo dashed" style="height: 350px;">
+			<div data-layout="cols-start-2 cols-end-4 rows-start-2 rows-end-12">A</div>
+			<div data-layout="cols-start-6 cols-end-6 rows-start-4 rows-end-8">B</div>
+			<div data-layout="cols-start-8 cols-end-8 rows-start-2 rows-end-11">C</div>
+			<div data-layout="cols-start-10 cols-end-10 rows-start-2 rows-end-2">D</div>
+			<div data-layout="cols-start-10 cols-end-10 rows-start-4 rows-end-4">E</div>
+			<div data-layout="cols-start-10 cols-end-10 rows-start-6 rows-end-6">F</div>
+			<div data-layout="cols-start-10 cols-end-10 rows-start-8 rows-end-8">G</div>
+			<div data-layout="cols-start-10 cols-end-10 rows-start-10 rows-end-10">H</div>
 		</div>
 
-		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
-  &lt;div data-layout=&quot;cols-4&quot;&gt;cols-4&lt;/div&gt;
-  &lt;div data-layout=&quot;cols-4 cols-offset-9&quot;&gt;cols-4 cols-offset-9&lt;/div&gt;
-  &lt;div data-layout=&quot;cols-3-md cols-offset-4-md&quot;&gt;cols-3-md cols-offset-4-md&lt;/div&gt;
-  &lt;div data-layout=&quot;cols-3-md cols-offset-10-md&quot;&gt;cols-3-md cols-offset-10-md&lt;/div&gt;
-  &lt;div data-layout=&quot;cols-6-md cols-offset-4-md&quot;&gt;cols-6-md cols-offset-4-md&lt;/div&gt;
-&lt;/div&gt;</pre>
-
-	</section>
-
-
-	<section id="nesting">
-
-		<div data-layout="grid-cols-2">
-			<div data-layout="text-right last">
-				<a href="#nav">Back to top</a>
-			</div>
-			<h2>Nesting grid elements</h2>
-		</div>
-
-		<p>Grids can be nested within other grids to create more complex layouts.</p>
-
-		<div data-layout="grid-cols-2-lg" class="demo">
-			<div>
-				<p>2-lg</p>
-				<div data-layout="grid-cols-6-lg" class="demo">
-					<div>6-lg</div>
-					<div>6-lg</div>
-					<div>6-lg</div>
-					<div>6-lg</div>
-					<div>6-lg</div>
-					<div>6-lg</div>
-				</div>
-			</div>
-			<div>
-				<p>2-lg</p>
-				<div data-layout="grid-cols-2-sm grid-cols-4-md" class="demo">
-					<div>&bull;2-sm &bull;4-md</div>
-					<div>&bull;2-sm &bull;4-md</div>
-					<div>&bull;2-sm &bull;4-md</div>
-					<div>&bull;2-sm &bull;4-md</div>
-				</div>
-			</div>
-		</div>
-
-		<pre>&lt;div data-layout=&quot;grid-cols-2-lg&quot;&gt;
-  &lt;div&gt;
-    &lt;p&gt;2-lg&lt;/p&gt;
-    &lt;div data-layout=&quot;grid-cols-6&quot;&gt;
-      &lt;div&gt;6&lt;/div&gt;
-      &lt;div&gt;6&lt;/div&gt;
-      &lt;div&gt;6&lt;/div&gt;
-      &lt;div&gt;6&lt;/div&gt;
-      &lt;div&gt;6&lt;/div&gt;
-      &lt;div&gt;6&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
-    &lt;p&gt;2-lg&lt;/p&gt;
-    &lt;div data-layout=&quot;grid-cols-2-sm grid-cols-4-md&quot;&gt;
-      &lt;div&gt;2-sm 4-md&lt;/div&gt;
-      &lt;div&gt;2-sm 4-md&lt;/div&gt;
-      &lt;div&gt;2-sm 4-md&lt;/div&gt;
-      &lt;div&gt;2-sm 4-md&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
+		<pre>&lt;div data-layout=&quot;grid-cols grid-rows&quot;&gt;
+  &lt;div data-layout=&quot;cols-start-2 cols-end-4 rows-start-2 rows-end-12&quot;&gt;A&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-start-6 cols-end-6 rows-start-4 rows-end-8&quot;&gt;B&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-start-8 cols-end-8 rows-start-2 rows-end-11&quot;&gt;C&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-start-10 cols-end-10 rows-start-2 rows-end-2&quot;&gt;D&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-start-10 cols-end-10 rows-start-4 rows-end-4&quot;&gt;E&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-start-10 cols-end-10 rows-start-6 rows-end-6&quot;&gt;F&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-start-10 cols-end-10 rows-start-8 rows-end-8&quot;&gt;G&lt;/div&gt;
+  &lt;div data-layout=&quot;cols-start-10 cols-end-10 rows-start-10 rows-end-10&quot;&gt;H&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 	</section>
@@ -962,8 +930,8 @@
 		<p>Flexbox allows us to reorder columns regardless of the HTML order.</p>
 
 		<ul>
-			<li><code>first</code>, <code>first-sm</code>, <code>first-md</code>, <code>first-lg</code>, <code>first-xl</code></li>
-			<li><code>last</code>, <code>last-sm</code>, <code>last-md</code>, <code>last-lg</code>, <code>last-xl</code></li>
+			<li><code>first</code>, <code>sm:first</code>, <code>md:first</code>, <code>lg:first</code>, <code>xl:first</code></li>
+			<li><code>last</code>, <code>sm:last</code>, <code>md:last</code>, <code>lg:last</code>, <code>xl:last</code></li>
 		</ul>
 
 		<h3>First</h3>
@@ -1001,17 +969,17 @@
 		<h3>Responsive example</h3>
 
 		<div data-layout="grid-cols-4" class="demo">
-			<div data-layout="last-md">A</div>
+			<div data-layout="md:last">A</div>
 			<div>B</div>
 			<div>C</div>
-			<div data-layout="first-md">D</div>
+			<div data-layout="md:first">D</div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-cols-4&quot;&gt;
-  &lt;div data-layout=&quot;last-md&quot;&gt;A&lt;/div&gt;
+  &lt;div data-layout=&quot;md:last&quot;&gt;A&lt;/div&gt;
   &lt;div&gt;B&lt;/div&gt;
   &lt;div&gt;C&lt;/div&gt;
-  &lt;div data-layout=&quot;first-md&quot;&gt;D&lt;/div&gt;
+  &lt;div data-layout=&quot;md:first&quot;&gt;D&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 	</section>
@@ -1031,7 +999,7 @@
 		<p>Implicit uniform columns can define their values at the parent flex element using <code>flex-cols-X</code>. There is no need for wrapper elements around each row, see <code>flex-cols-2</code> example below.</p>
 
 		<ul>
-			<li><code>flex-cols-X</code>, <code>flex-cols-X-sm</code>, <code>flex-cols-X-md</code>, <code>flex-cols-X-lg</code>, <code>flex-cols-X-xl</code></li>
+			<li><code>flex-cols-X</code>, <code>sm:flex-cols-X</code>, <code>md:flex-cols-X</code>, <code>lg:flex-cols-X</code>, <code>xl:flex-cols-X</code></li>
 		</ul>
 
 		<div class="demo" data-layout="flex-cols-5">
@@ -1095,7 +1063,7 @@
 		<p>Columns that are not uniform can define their column span value directly on the column element using <code>cols-X</code>. Multiple rows are achieved with filling columns according to the 12 column layout.</p>
 
 		<ul>
-			<li><code>cols-X</code>, <code>cols-X-sm</code>, <code>cols-X-md</code>, <code>cols-X-lg</code>, <code>cols-X-xl</code></li>
+			<li><code>cols-X</code>, <code>sm:cols-X</code>, <code>md:cols-X</code>, <code>lg:cols-X</code>, <code>xl:cols-X</code></li>
 		</ul>
 
 		<div class="demo" data-layout="flex-cols">
@@ -1131,7 +1099,7 @@
 		<p>An explicit flex column can shrink to fit the contents using <code>cols-fit</code>.</p>
 
 		<ul>
-			<li><code>cols-fit</code>, <code>cols-fit-sm</code>, <code>cols-fit-md</code>, <code>cols-fit-lg</code>, <code>cols-fit-xl</code></li>
+			<li><code>cols-fit</code>, <code>sm:cols-fit</code>, <code>md:cols-fit</code>, <code>lg:cols-fit</code>, <code>xl:cols-fit</code></li>
 		</ul>
 
 		<div class="demo dashed" data-layout="flex-cols-4">
@@ -1151,7 +1119,7 @@
 		<p>An explicit flex column can fill the row using <code>cols-fill</code>.</p>
 
 		<ul>
-			<li><code>cols-fill</code>, <code>cols-fill-sm</code>, <code>cols-fill-md</code>, <code>cols-fill-lg</code>, <code>cols-fill-xl</code></li>
+			<li><code>cols-fill</code>, <code>sm:cols-fill</code>, <code>md:cols-fill</code>, <code>lg:cols-fill</code>, <code>xl:cols-fill</code></li>
 		</ul>
 
 		<div class="demo" data-layout="flex-cols-4">
@@ -1171,7 +1139,7 @@
 		<p>Implicit uniform rows can define their values at the parent flex element using <code>flex-rows-X</code>.</p>
 
 		<ul>
-			<li><code>flex-rows-X</code>, <code>flex-rows-X-sm</code>, <code>flex-rows-X-md</code>, <code>flex-rows-X-lg</code>, <code>flex-rows-X-xl</code></li>
+			<li><code>flex-rows-X</code>, <code>sm:flex-rows-X</code>, <code>md:flex-rows-X</code>, <code>lg:flex-rows-X</code>, <code>xl:flex-rows-X</code></li>
 		</ul>
 
 		<div class="demo" data-layout="flex-rows-3" style="height: 350px;">
@@ -1191,7 +1159,7 @@
 		<p>Rows that are not uniform can define their row span value directly on the element using <code>rows-X</code>.</p>
 
 		<ul>
-			<li><code>rows-X</code>, <code>rows-X-sm</code>, <code>rows-X-md</code>, <code>rows-X-lg</code>, <code>rows-X-xl</code></li>
+			<li><code>rows-X</code>, <code>sm:rows-X</code>, <code>md:rows-X</code>, <code>lg:rows-X</code>, <code>xl:rows-X</code></li>
 		</ul>
 
 		<div class="demo" data-layout="flex-rows" style="height: 350px;">
@@ -1229,7 +1197,7 @@
 		<h3 id="fill-explicit-rows">Fill explicit rows</h3>
 
 		<ul>
-			<li><code>rows-fill</code>, <code>rows-fill-sm</code>, <code>rows-fill-md</code>, <code>rows-fill-lg</code>, <code>rows-fill-xl</code></li>
+			<li><code>rows-fill</code>, <code>sm:rows-fill</code>, <code>md:rows-fill</code>, <code>lg:rows-fill</code>, <code>xl:rows-fill</code></li>
 		</ul>
 
 		<div class="demo" data-layout="flex-rows-4" style="height: 350px;">
@@ -1257,18 +1225,18 @@
 		<p>Multiple helper attributes to show and hide content to the corresponding grid breakpoints.</p>
 
 		<ul>
-			<li><code>show</code>, <code>show-sm</code>, <code>show-md</code>, <code>show-lg</code>, <code>show-xl</code></li>
-			<li><code>hide</code>, <code>hide-sm</code>, <code>hide-md</code>, <code>hide-lg</code>, <code>hide-xl</code></li>
+			<li><code>show</code>, <code>sm:show</code>, <code>md:show</code>, <code>lg:show</code>, <code>xl:show</code></li>
+			<li><code>hide</code>, <code>sm:hide</code>, <code>md:hide</code>, <code>lg:hide</code>, <code>xl:hide</code></li>
 		</ul>
 
 		<div data-layout="grid-cols-2" class="demo">
-			<div data-layout="hide show-md">A<br><span data-layout="hide show-lg">Also works on inline elements!</span></div>
-			<div>B<br><span data-layout="hide-lg">Also works on inline elements!</span></div>
+			<div data-layout="hide md:show lg:show">A<br><span data-layout="hide lg:show">Also works on inline elements!</span></div>
+			<div>B<br><span data-layout="lg:hide">Also works on inline elements!</span></div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-cols-2&quot;&gt;
-  &lt;div data-layout=&quot;hide show-md&quot;&gt;A&lt;br&gt;&lt;span data-layout=&quot;hide show-lg&quot;&gt;Also works on inline elements!&lt;/span&gt;&lt;/div&gt;
-  &lt;div&gt;B&lt;br&gt;&lt;span data-layout=&quot;hide-lg&quot;&gt;Also works on inline elements!&lt;/span&gt;&lt;/div&gt;
+  &lt;div data-layout=&quot;hide md:show lg:show&quot;&gt;A&lt;br&gt;&lt;span data-layout=&quot;hide lg:show&quot;&gt;Also works on inline elements!&lt;/span&gt;&lt;/div&gt;
+  &lt;div&gt;B&lt;br&gt;&lt;span data-layout=&quot;lg:hide&quot;&gt;Also works on inline elements!&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 
@@ -1286,15 +1254,15 @@
 		</div>
 
 		<ul>
-			<li><code>text-left</code>, <code>text-left-sm</code>, <code>text-left-md</code>, <code>text-left-md</code>, <code>text-left-lg</code></li>
-			<li><code>text-right</code>, <code>text-right-sm</code>, <code>text-right-md</code>, <code>text-right-md</code>, <code>text-right-lg</code></li>
-			<li><code>text-center</code>, <code>text-center-sm</code>, <code>text-center-md</code>, <code>text-center-md</code>, <code>text-center-lg</code></li>
+			<li><code>text-left</code>, <code>sm:text-left</code>, <code>md:text-left</code>, <code>lg:text-left</code>, <code>xl:text-left</code></li>
+			<li><code>text-right</code>, <code>sm:text-right</code>, <code>md:text-right</code>, <code>lg:text-right</code>, <code>xl:text-right</code></li>
+			<li><code>text-center</code>, <code>sm:text-center</code>, <code>md:text-center</code>, <code>lg:text-center</code>, <code>xl:text-center</code></li>
 		</ul>
 
-		<div data-layout="grid-cols" class="demo">
-			<div data-layout="cols-6 text-left">text-left</div>
-			<div data-layout="cols-6 text-right">text-right</div>
-			<div data-layout="cols-12 text-center">text-center</div>
+		<div data-layout="grid-cols" style="height: 250px;">
+			<div data-layout="cols-6 text-left" class="dashed">text-left</div>
+			<div data-layout="cols-6 text-right" class="dashed">text-right</div>
+			<div data-layout="cols-12 text-center" class="dashed">text-center</div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;grid-cols&quot;&gt;
@@ -1318,22 +1286,22 @@
 		<p>The float utils make it easy to float a item left, right, or center (margin auto). The <code>clear-fix</code> is a common clear fix utility to force content to clear a block element that is floated. Without a clearfix a single floated item will cause content immediately after it to potentially wrap content which may or may not be desired. Read more about <a href="https://css-tricks.com/snippets/css/clear-fix">clear fix here</a>.</p>
 
 		<ul>
-			<li><code>clear-fix</code>, <code>clear-fix-sm</code>, <code>clear-fix-md</code>, <code>clear-fix-lg</code>, <code>clear-fix-xl</code>,</li>
-			<li><code>float-left</code>, <code>float-left-sm</code>, <code>float-left-md</code>, <code>float-left-lg</code>, <code>float-left-xl</code>,</li>
-			<li><code>float-center</code>, <code>float-center-sm</code>, <code>float-center-md</code>, <code>float-center-lg</code>, <code>float-center-xl</code>,</li>
-			<li><code>float-right</code>, <code>float-right-sm</code>, <code>float-right-md</code>, <code>float-right-lg</code>, <code>float-right-xl</code>,</li>
+			<li><code>clear-fix</code>, <code>sm:clear-fix</code>, <code>md:clear-fix</code>, <code>lg:clear-fix</code>, <code>xl:clear-fix</code>,</li>
+			<li><code>float-left</code>, <code>sm:float-left</code>, <code>md:float-left</code>, <code>lg:float-left</code>, <code>xl:float-left</code>,</li>
+			<li><code>float-center</code>, <code>sm:float-center</code>, <code>md:float-center</code>, <code>lg:float-center</code>, <code>xl:float-center</code>,</li>
+			<li><code>float-right</code>, <code>sm:float-right</code>, <code>md:float-right</code>, <code>lg:float-right</code>, <code>xl:float-right</code>,</li>
 		</ul>
 
 		<div data-layout="clear-fix" class="demo dashed">
 			<div data-layout="float-center" style="width: 200px;">A</div>
-			<div data-layout="float-left float-right-md" style="width: 200px;">B</div>
-			<div data-layout="float-right float-left-md" style="width: 200px;">C</div>
+			<div data-layout="float-left md:float-right" style="width: 200px;">B</div>
+			<div data-layout="float-right md:float-left" style="width: 200px;">C</div>
 		</div>
 
 		<pre>&lt;div data-layout=&quot;clear-fix&quot;&gt;
-	&lt;div data-layout=&quot;float-center&quot;&gt;A&lt;/div&gt;
-	&lt;div data-layout=&quot;float-left float-right-md&quot;&gt;B&lt;/div&gt;
-	&lt;div data-layout=&quot;float-right float-left-md&quot;&gt;C&lt;/div&gt;
+  &lt;div data-layout=&quot;float-center&quot;&gt;A&lt;/div&gt;
+  &lt;div data-layout=&quot;float-left md:float-right&quot;&gt;B&lt;/div&gt;
+  &lt;div data-layout=&quot;float-right md:float-left&quot;&gt;C&lt;/div&gt;
 &lt;/div&gt;</pre>
 
 	</section>
@@ -1355,6 +1323,36 @@
 &lt;/div&gt;</pre>
 
 	</section>
+
+
+	<section id="aspect-ratio">
+		<div data-layout="grid-cols-2">
+			<div data-layout="text-right last">
+				<a href="#nav">Back to top</a>
+			</div>
+			<h2>Aspect ratio</h2>
+		</div>
+
+		<p>The aspect ratio utils make it easy to set the aspect ratio of an element. The aspect ratio is set using the <code>aspect-ratio-X-Y</code> syntax. The <code>X</code> is the width and the <code>Y</code> is the height.</p>
+
+		<ul>
+			<li><code>aspect-ratio-16-9</code>, <code>sm:aspect-ratio-16-9</code>, <code>md:aspect-ratio-16-9</code>, <code>lg:aspect-ratio-16-9</code>, <code>xl:aspect-ratio-16-9</code></li>
+			<li><code>aspect-ratio-4-3</code>, <code>sm:aspect-ratio-4-3</code>, <code>md:aspect-ratio-4-3</code>, <code>lg:aspect-ratio-4-3</code>, <code>xl:aspect-ratio-4-3</code></li>
+			<li><code>aspect-ratio-3-2</code>, <code>sm:aspect-ratio-3-2</code>, <code>md:aspect-ratio-3-2</code>, <code>lg:aspect-ratio-3-2</code>, <code>xl:aspect-ratio-3-2</code></li>
+			<li><code>aspect-ratio-2-1</code>, <code>sm:aspect-ratio-2-1</code>, <code>md:aspect-ratio-2-1</code>, <code>lg:aspect-ratio-2-1</code>, <code>xl:aspect-ratio-2-1</code></li>
+			<li><code>aspect-ratio-1-1</code>, <code>sm:aspect-ratio-1-1</code>, <code>md:aspect-ratio-1-1</code>, <code>lg:aspect-ratio-1-1</code>, <code>xl:aspect-ratio-1-1</code></li>
+		</ul>
+
+		<div style="min-height: 300px;" class="demo dashed">
+			<div data-layout="aspect-ratio-2-1 md:aspect-ratio-1-1">*:2:1 md:1:1</div>
+		</div>
+
+		<pre>&lt;div style=&quot;min-height: 300px;&quot;&gt;
+  &lt;div data-layout=&quot;aspect-ratio-2-1&quot;&gt;2:1&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+	</section>
+
 
 </body>
 </html>
