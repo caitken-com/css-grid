@@ -35,6 +35,8 @@ html { box-sizing: border-box; }
 [data-layout~=rows-gap-4] { row-gap: 4rem; }
 [data-layout~=rows-gap-5] { row-gap: 5rem; }
 
+[data-layout*=aspect-ratio-] { display: flex; }
+[data-layout*=aspect-ratio-] > * { flex: 1; }
 [data-layout~=aspect-ratio-16-9] { aspect-ratio: 16/9; }
 [data-layout~=aspect-ratio-4-3] { aspect-ratio: 4/3; }
 [data-layout~=aspect-ratio-3-2] { aspect-ratio: 3/2; }
@@ -43,8 +45,6 @@ html { box-sizing: border-box; }
 
 @supports not (aspect-ratio: 16 / 9)
 {
-	[data-layout*=aspect-ratio-] { display: flex; }
-	[data-layout*=aspect-ratio-] > * { flex: 1; }
 	[data-layout~=aspect-ratio-16-9]::before { padding-bottom: 56.25%; content: ""; float: left; }
 	[data-layout~=aspect-ratio-4-3]::before { padding-bottom: 75%; content: ""; float: left; }
 	[data-layout~=aspect-ratio-3-2]::before { padding-bottom: 66.6666666%; content: ""; float: left; }
